@@ -1,0 +1,97 @@
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/football_field_background"
+    android:padding="16dp">
+
+    <!-- Username Field -->
+    <EditText
+        android:id="@+id/username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nom d'utilisateur"
+        android:padding="12dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Confirm Password Field -->
+    <EditText
+        android:id="@+id/confirm_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Confirmer le mot de passe"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Role Spinner -->
+    <Spinner
+        android:id="@+id/role_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_border_light_blue"
+        android:alpha="0.8"
+        android:entries="@array/roles_array" />
+
+    <!-- Sign-up Button -->
+    <Button
+        android:id="@+id/btn_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Créer un Compte"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/green_button_gradient"
+        android:layout_marginTop="20dp"
+        android:padding="14dp" />
+
+    <!-- Already Registered Text -->
+    <TextView
+        android:id="@+id/txt_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Déjà inscrit ? Connectez-vous"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center" />
+</LinearLayout>

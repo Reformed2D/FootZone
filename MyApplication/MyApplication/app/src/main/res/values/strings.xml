@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">FootZone</string>
+    <string-array name="roles_array">
+        <item>Player</item>
+        <item>Utilisateur</item>
+        <item>Administrateur</item>
+    </string-array>
+    <string-array name="positions_array">
+        <item>Gardien</item>
+        <item>Attaquant</item>
+        <item>Défenseur</item>
+        <item>Milieu</item>
+    </string-array>
+    <string-array name="reclamation_types">
+        <item>Non-respect des Règles</item>
+        <item>Comportement des Joueurs</item>
+        <item>Arbitrage / Décision de l\'Arbitre</item>
+        <item>Autre</item>
+    </string-array>
+
+
+
+
+
+
+
+
+
+</resources>

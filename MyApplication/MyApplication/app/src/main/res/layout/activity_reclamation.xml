@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center">
+
+    <!-- Sujet -->
+    <EditText
+        android:id="@+id/sujetEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Sujet"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Détails -->
+    <EditText
+        android:id="@+id/detailsEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Détails"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Label Type de réclamation -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type de réclamation"
+        android:textSize="18sp"
+        android:paddingTop="16dp"
+        android:paddingBottom="8dp"
+        android:textColor="#000000"
+        android:gravity="center" />
+
+    <!-- Type de réclamation -->
+    <Spinner
+        android:id="@+id/typeSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Description -->
+    <EditText
+        android:id="@+id/descriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:inputType="text"
+        android:textSize="18sp"
+        android:gravity="center" />
+
+    <!-- Bouton pour soumettre la réclamation -->
+    <Button
+        android:id="@+id/submitReclamationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Soumettre la réclamation"
+        android:textSize="18sp"
+        android:layout_gravity="center" />
+</LinearLayout>

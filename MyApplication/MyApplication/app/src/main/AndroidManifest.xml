@@ -1,0 +1,71 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ss"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/ss"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MyApplication"
+        tools:targetApi="31">
+
+        <!-- Page Intro avec vidéo -->
+        <activity
+            android:name=".IntroActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Page Login -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Page Inscription -->
+        <activity
+            android:name=".SignupActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Page principale après la connexion -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
+
+
+        <!-- Page Admin -->
+        <activity
+            android:name=".AdminActivity"
+            android:exported="true">
+        </activity>
+        <activity android:name=".ReclamationsListActivity" />
+
+
+        <!-- Page Profil -->
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Nouvelle page NextActivity -->
+        <activity
+            android:name=".NextActivity"
+            android:exported="true">
+        </activity>
+
+        <!-- Page Reclamation -->
+        <activity
+            android:name=".ReclamationActivity">
+        </activity>
+
+    </application>
+</manifest>
