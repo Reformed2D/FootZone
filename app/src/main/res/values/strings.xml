@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Reservation</string>
+    <string name="make_reservation">Make Reservation</string>
+    <string name="football_field_reservation">Football Field Reservation</string>
+</resources>
