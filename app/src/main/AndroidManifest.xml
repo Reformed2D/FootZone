@@ -54,5 +54,8 @@
         <activity
             android:name=".SportsActivity"
             android:exported="false"/>
+
+        <activity android:name=".equipe.TeamActivity" android:exported="true"> </activity>
+        <activity android:name=".equipe.DisplayTeam" android:exported="false"> </activity>
     </application>
 </manifest>

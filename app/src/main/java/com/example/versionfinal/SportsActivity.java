@@ -1,13 +1,15 @@
 package com.example.versionfinal;
-
+import com.example.versionfinal.equipe.TeamActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.versionfinal.User.LoginActivity;
+import com.example.versionfinal.equipe.TeamActivity;
 
 public class SportsActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "MyPrefsFile";
@@ -17,6 +19,9 @@ public class SportsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sports);
+
+        // Ajouter cette ligne pour déboguer
+        Log.d("SportsActivity", "onCreate - isLoggedIn: " + isLoggedIn());
 
         setupSportsCards();
         setupBottomNavigation();
@@ -54,10 +59,10 @@ public class SportsActivity extends AppCompatActivity {
                     startActivity(new Intent(this, LoginActivity.class));
                     break;
                 case 3: // Reclamation
-                    startActivity(new Intent(this, LoginActivity.class));
+                    startActivity(new Intent(this, TeamActivity.class));
                     break;
                 case 4: // Equipe
-                    startActivity(new Intent(this, LoginActivity.class));
+                    startActivity(new Intent(this, TeamActivity.class));
                     break;
             }
         } else {
@@ -94,7 +99,10 @@ public class SportsActivity extends AppCompatActivity {
 
     private boolean isLoggedIn() {
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        return settings.getBoolean(LOGIN_STATUS, false);
+        boolean isLogged = settings.getBoolean(LOGIN_STATUS, false);
+        // Ajout d'un log pour déboguer
+        Log.d("SportsActivity", "isLoggedIn: " + isLogged);
+        return isLogged;
     }
 
     private void redirectToLogin(String feature) {

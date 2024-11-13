@@ -5,7 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.example.versionfinal.equipe.Team;
 import com.example.versionfinal.payment.payment;
 
 import java.util.ArrayList;
@@ -28,7 +30,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_9 = "WITHOUT_TEAM";
     private static final String COL_10 = "PROFILE_IMAGE";
     private static final String COL_11 = "IS_SUPER_ADMIN";
-
+/*******************************************************************/
+public static final String TEAM_TABLE_NAME = "team_table";
+    public static final String TEAM_COL_1 = "TEAM_ID"; // Primary key for team table
+    public static final String TEAM_COL_2 = "TEAM_NAME";
+    public static final String TEAM_COL_3 = "GOALKEEPER";
+    public static final String TEAM_COL_4 = "DEFENDER_LEFT";
+    public static final String TEAM_COL_5 = "DEFENDER_RIGHT";
+    public static final String TEAM_COL_6 = "MIDFIELDER_LEFT";
+    public static final String TEAM_COL_7 = "MIDFIELDER_RIGHT";
+    public static final String TEAM_COL_8 = "FORWARD_LEFT";
+    public static final String TEAM_COL_9 = "FORWARD_RIGHT";
+    public static final String TEAM_COL_10 = "USER_ID";
+    public static final String TEAM_IMAGE_TABLE_NAME = "team_images";
+    public static final String TEAM_IMAGE_COL_1 = "ID"; // Primary key for team images table
+    public static final String TEAM_IMAGE_COL_2 = "TEAM_ID"; // Foreign key referencing team_table
+    public static final String TEAM_IMAGE_COL_3 = "IMAGE";
+/****************************************************************************/
     // Table Paiements
     private static final String TABLE_PAYMENTS = "payments";
     private static final String PAYMENT_ID = "ID";
@@ -43,9 +61,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
+/**************************************creation user***********************************/
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys = ON;");
         // Création de la table utilisateurs
         String createUsersTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
@@ -61,7 +80,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_11 + " INTEGER DEFAULT 0)";
         db.execSQL(createUsersTable);
 
-        // Création de la table paiements
+        /****************** Création de la table paiements*************************/
         String createPaymentsTable = "CREATE TABLE " + TABLE_PAYMENTS + " (" +
                 PAYMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PAYMENT_USER_EMAIL + " TEXT, " +
@@ -73,8 +92,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PAYMENT_DESCRIPTION + " TEXT, " +
                 "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))";
         db.execSQL(createPaymentsTable);
+/************************************creation team***********************************/
+        String createTeamTable = "CREATE TABLE IF NOT EXISTS " + TEAM_TABLE_NAME + " (" +
+                TEAM_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TEAM_COL_2 + " TEXT, " +
+                TEAM_COL_3 + " TEXT, " +
+                TEAM_COL_4 + " TEXT, " +
+                TEAM_COL_5 + " TEXT, " +
+                TEAM_COL_6 + " TEXT, " +
+                TEAM_COL_7 + " TEXT, " +
+                TEAM_COL_8 + " TEXT, " +
+                TEAM_COL_9 + " TEXT, " +
+                TEAM_COL_10 + " INTEGER, " +
+                "FOREIGN KEY(" + TEAM_COL_10 + ") REFERENCES " + TABLE_NAME + "(" + COL_1 + "))"; // User's table should not be touched
+        db.execSQL(createTeamTable);
 
-        // Insertion de l'administrateur par défaut
+        /***************** Insertion de l'administrateur par défaut*****************/
         ContentValues adminValues = new ContentValues();
         adminValues.put(COL_2, "Omar Abidi Admin");
         adminValues.put(COL_3, "omarabidiadmin@esprit.tn");
@@ -83,6 +116,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         adminValues.put(COL_11, 1);
         db.insert(TABLE_NAME, null, adminValues);
     }
+    /************************************************************************************/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -248,5 +282,159 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return payments;
     }
+    /************Hadji**********************************************/
+    public Cursor getUserByID(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID = ?";
+        String[] selectionArgs = { String.valueOf(userId) };
+        return db.rawQuery(query, selectionArgs);
+    }
+    public int insertTeam(String teamName, String goalkeeper, String defenderLeft, String defenderRight,
+                          String midfielderLeft, String midfielderRight, String forwardLeft, String forwardRight, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_COL_2, teamName);
+        contentValues.put(TEAM_COL_3, goalkeeper);
+        contentValues.put(TEAM_COL_4, defenderLeft);
+        contentValues.put(TEAM_COL_5, defenderRight);
+        contentValues.put(TEAM_COL_6, midfielderLeft);
+        contentValues.put(TEAM_COL_7, midfielderRight);
+        contentValues.put(TEAM_COL_8, forwardLeft);
+        contentValues.put(TEAM_COL_9, forwardRight);
+        contentValues.put(TEAM_COL_10, userId);  // The foreign key (userId)
+
+        long result = db.insert(TEAM_TABLE_NAME, null, contentValues);
+
+        // If insertion fails, return -1, otherwise return the team_id (result)
+        return result != -1 ? (int) result : -1;
+    }
+
+    // Insert team image
+    public boolean saveTeamImage(int teamId, String encodedImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_IMAGE_COL_2, teamId);
+        contentValues.put(TEAM_IMAGE_COL_3, encodedImage);
+        return db.insert(TEAM_IMAGE_TABLE_NAME, null, contentValues) != -1;
+    }
+
+    // Update team image
+    public boolean updateTeamImage(int teamId, String encodedImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_IMAGE_COL_3, encodedImage);
+        return db.update(TEAM_IMAGE_TABLE_NAME, contentValues, TEAM_IMAGE_COL_2 + "=?", new String[]{String.valueOf(teamId)}) > 0;
+    }
+
+    // Retrieve all teams
+    public Cursor getAllTeams() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TEAM_TABLE_NAME, null);
+    }
+
+    // Retrieve team by ID
+    public Team getTeamById(int teamId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        Team team = null;
+
+        try {
+            String query = "SELECT * FROM " + TEAM_TABLE_NAME + " WHERE " + TEAM_COL_1 + " = ?";
+            cursor = db.rawQuery(query, new String[]{String.valueOf(teamId)});
+
+            Log.d("DatabaseHelper", "Getting team with ID: " + teamId);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                team = new Team();
+
+                team.setTeamId(cursor.getInt(cursor.getColumnIndexOrThrow(TEAM_COL_1)));
+                team.setTeamName(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_2)));
+                team.setGoalkeeper(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_3)));
+                team.setDefenderLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_4)));
+                team.setDefenderRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_5)));
+                team.setMidfielderLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_6)));
+                team.setMidfielderRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_7)));
+                team.setForwardLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_8)));
+                team.setForwardRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_9)));
+
+                Log.d("DatabaseHelper", "Team found: " + team.getTeamName());
+            } else {
+                Log.d("DatabaseHelper", "No team found with ID: " + teamId);
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error getting team by ID: " + e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return team;
+    }
+
+
+
+
+    // Delete team
+    public void deleteTeam(int teamId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TEAM_TABLE_NAME, TEAM_COL_1 + " = ?", new String[]{String.valueOf(teamId)});
+        db.close();
+    }
+    public Cursor getTeamByUserId(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            String query = "SELECT * FROM " + TEAM_TABLE_NAME + " WHERE " + TEAM_COL_10 + " = ?";
+            Log.d("DatabaseHelper", "Getting team for user ID: " + userId);
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
+
+            if (cursor != null && cursor.moveToFirst()) {
+                Log.d("DatabaseHelper", "Found team for user");
+            } else {
+                Log.d("DatabaseHelper", "No team found for user");
+            }
+
+            return cursor;
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error getting team by user ID: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    public boolean updateTeam(int teamId, String teamName, String goalkeeper, String defenderLeft, String defenderRight,
+                              String midfielderLeft, String midfielderRight, String forwardLeft, String forwardRight) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_COL_2, teamName);
+        contentValues.put(TEAM_COL_3, goalkeeper);
+        contentValues.put(TEAM_COL_4, defenderLeft);
+        contentValues.put(TEAM_COL_5, defenderRight);
+        contentValues.put(TEAM_COL_6, midfielderLeft);
+        contentValues.put(TEAM_COL_7, midfielderRight);
+        contentValues.put(TEAM_COL_8, forwardLeft);
+        contentValues.put(TEAM_COL_9, forwardRight);
+
+        // Update the team with the given teamId
+        int result = db.update(TEAM_TABLE_NAME, contentValues, TEAM_COL_1 + " = ?", new String[]{String.valueOf(teamId)});
+        db.close();
+
+        return result > 0; // Return true if update was successful
+    }
+    public boolean removePlayerFromTeam(int teamId, String positionColumn) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.putNull(positionColumn);
+
+        int result = db.update(TEAM_TABLE_NAME, contentValues, TEAM_COL_1 + " = ?",
+                new String[]{String.valueOf(teamId)});
+        db.close();
+
+        return result > 0;
+    }
+
 
 }
