@@ -16,6 +16,7 @@ public class Reclamation {
     public Reclamation(String description, String type) {
     }
 
+
     public String getSujet() {
         return sujet;
     }

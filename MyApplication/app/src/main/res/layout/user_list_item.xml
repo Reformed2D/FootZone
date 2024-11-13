@@ -7,28 +7,38 @@
     android:background="?attr/selectableItemBackground"
     android:layout_marginBottom="8dp">
 
-    <!-- Description de la réclamation -->
     <TextView
-        android:id="@+id/textViewDescription"
+        android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:text="Nom d'utilisateur" />
 
-    <!-- Type de la réclamation -->
     <TextView
-        android:id="@+id/textViewType"
+        android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="14sp"
-        android:textColor="#666666"/>
+        android:text="Email" />
 
-    <!-- Bouton de suppression -->
+    <TextView
+        android:id="@+id/roleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="Rôle" />
+
     <Button
-        android:id="@+id/btnDeleteReclamation"
+        android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Supprimer"
-        android:layout_marginTop="8dp"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/colorAccent"/>
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/viewReclamationsButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Voir Réclamations"
+        android:layout_marginTop="4dp"/>
 </LinearLayout>

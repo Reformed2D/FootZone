@@ -8,19 +8,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
-
     private Context context;
     private ArrayList<HashMap<String, String>> userList;
     private OnDeleteClickListener onDeleteClickListener;
-
-
 
     public UserAdapter(Context context, ArrayList<HashMap<String, String>> userList, OnDeleteClickListener onDeleteClickListener) {
         this.context = context;
@@ -33,9 +28,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.user_list_item, parent, false);
         return new UserViewHolder(view);
-
-
-
     }
 
     @Override
@@ -45,13 +37,18 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         holder.emailTextView.setText(user.get("EMAIL"));
         holder.roleTextView.setText(user.get("ROLE"));
 
-
-
         // Gérer le clic sur le bouton "Delete"
         holder.deleteButton.setOnClickListener(v -> {
             if (onDeleteClickListener != null) {
                 onDeleteClickListener.onDeleteClick(user.get("ID"));
             }
+        });
+
+        // Gérer le clic sur le bouton "Voir Réclamations"
+        holder.viewReclamationsButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ReclamationsListActivity.class);
+            intent.putExtra("USER_ID", user.get("ID"));
+            context.startActivity(intent);
         });
     }
 
@@ -71,18 +68,10 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             roleTextView = itemView.findViewById(R.id.roleTextView);
             deleteButton = itemView.findViewById(R.id.deleteButton);
             viewReclamationsButton = itemView.findViewById(R.id.viewReclamationsButton);
-
-            viewReclamationsButton.setOnClickListener(v -> {
-                Intent intent = new Intent(itemView.getContext(), ReclamationsListActivity.class);
-                itemView.getContext().startActivity(intent);
-            });
         }
     }
-
-
 
     public interface OnDeleteClickListener {
         void onDeleteClick(String userId);
     }
-
 }

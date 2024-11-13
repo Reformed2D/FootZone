@@ -14,13 +14,13 @@ import java.util.List;
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "footballApp.db";
     private static final String TABLE_NAME = "users";
-    private static final String RECLAMATIONS_TABLE = "reclamations";
-    private static final String R_COL_5 = "TYPE"; // Added type column
-    private static final String R_COL_6 = "DESCRIPTION"; // Added description column
+    static final String RECLAMATIONS_TABLE = "reclamations";
+    static final String R_COL_5 = "TYPE"; // Added type column
+    static final String R_COL_6 = "DESCRIPTION"; // Added description column
 
-    private static final String R_COL_1 = "ID";
-    private static final String R_COL_2 = "SUJET";
-    private static final String R_COL_3 = "DETAILS";
+    static final String R_COL_1 = "ID";
+    static final String R_COL_2 = "SUJET";
+    static final String R_COL_3 = "DETAILS";
     private static final String R_COL_4 = "USER_ID";
 
     private static final String COL_1 = "ID";
@@ -253,7 +253,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         List<HashMap<String, String>> reclamations = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + RECLAMATIONS_TABLE, null);
+        Cursor cursor = db.query(RECLAMATIONS_TABLE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -269,7 +275,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return reclamations;
     }
-
     public boolean deleteReclamation(String id) {
         SQLiteDatabase db = this.getWritableDatabase();
         return db.delete(RECLAMATIONS_TABLE, R_COL_1 + "=?", new String[]{id}) > 0;
