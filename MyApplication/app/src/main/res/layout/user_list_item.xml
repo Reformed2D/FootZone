@@ -1,40 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp"
-    android:background="?attr/selectableItemBackground"
-    android:layout_marginBottom="8dp">
-
-    <TextView
-        android:id="@+id/usernameTextView"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="16dp" android:background="?attr/selectableItemBackground">
+    <TextView android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:text="Nom d'utilisateur" />
-
-    <TextView
-        android:id="@+id/emailTextView"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+    <TextView android:id="@+id/emailTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:text="Email" />
-
-    <TextView
-        android:id="@+id/roleTextView"
+        android:textColor="@color/gray"
+        android:textSize="14sp"/>
+    <TextView android:id="@+id/roleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
-        android:text="Rôle" />
-
-    <Button
-        android:id="@+id/deleteButton"
+        android:textColor="@color/gray"
+        android:textSize="14sp"/>
+    <Button android:id="@+id/deleteButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Supprimer"
-        android:layout_marginTop="8dp"/>
-
+        android:backgroundTint="@color/colorAccent"
+        android:textColor="@color/white" android:layout_marginTop="8dp"/>
     <Button
         android:id="@+id/viewReclamationsButton"
         android:layout_width="wrap_content"
