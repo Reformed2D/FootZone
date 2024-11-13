@@ -275,7 +275,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return reclamations;
     }
-    public boolean deleteReclamation(String id) {
+
+
+    public boolean deleteReclamation(String reclamationId) {
         SQLiteDatabase db = this.getWritableDatabase();
-        return db.delete(RECLAMATIONS_TABLE, R_COL_1 + "=?", new String[]{id}) > 0;
+        int result = db.delete("Reclamations", "id = ?", new String[]{reclamationId});
+        db.close();
+        return result > 0; // Retourne true si une réclamation a été supprimée
     }}

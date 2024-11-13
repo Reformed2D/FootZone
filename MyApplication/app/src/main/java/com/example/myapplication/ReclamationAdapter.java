@@ -4,7 +4,9 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.HashMap;
@@ -34,6 +36,15 @@ public class ReclamationAdapter extends RecyclerView.Adapter<ReclamationAdapter.
         holder.textViewDetails.setText(reclamation.get("details"));
         holder.textViewType.setText(reclamation.get("type"));
         holder.textViewDescription.setText(reclamation.get("description"));
+
+        // Ajouter un écouteur pour le bouton "Supprimer"
+        holder.buttonDeleteReclamation.setOnClickListener(v -> {
+            // Suppression de la réclamation de la liste
+            reclamationList.remove(position);
+            notifyItemRemoved(position);
+            notifyItemRangeChanged(position, reclamationList.size());
+            Toast.makeText(context, "Réclamation supprimée", Toast.LENGTH_SHORT).show();
+        });
     }
 
     @Override
@@ -43,6 +54,7 @@ public class ReclamationAdapter extends RecyclerView.Adapter<ReclamationAdapter.
 
     public static class ReclamationViewHolder extends RecyclerView.ViewHolder {
         TextView textViewSujet, textViewDetails, textViewType, textViewDescription;
+        Button buttonDeleteReclamation;
 
         public ReclamationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -50,6 +62,7 @@ public class ReclamationAdapter extends RecyclerView.Adapter<ReclamationAdapter.
             textViewDetails = itemView.findViewById(R.id.textViewDetails);
             textViewType = itemView.findViewById(R.id.textViewType);
             textViewDescription = itemView.findViewById(R.id.textViewDescription);
+            buttonDeleteReclamation = itemView.findViewById(R.id.buttonDeleteReclamation);
         }
     }
 }
