@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -7,7 +6,7 @@
     android:background="@android:color/white"
     android:padding="24dp">
 
-    <!-- Header Section -->
+    <!-- Header Section reste inchangé -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -32,7 +31,7 @@
         android:orientation="vertical"
         android:layout_marginTop="48dp">
 
-        <!-- Email Field -->
+        <!-- Les TextInputLayout restent inchangés -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -52,7 +51,6 @@
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Password Field -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,23 +71,17 @@
                 android:padding="16dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Login Button -->
-        <androidx.cardview.widget.CardView
+        <!-- Login Button remplacé par MaterialButton -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/loginButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Se connecter"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:backgroundTint="#FFC107"
-                android:textColor="@android:color/white"/>
-        </androidx.cardview.widget.CardView>
+            android:layout_height="60dp"
+            android:text="Se connecter"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#FFC107"
+            android:textColor="@android:color/white"/>
 
         <!-- Progress Bar -->
         <ProgressBar
@@ -115,24 +107,45 @@
             android:textAlignment="center"
             android:textColor="#666666"/>
 
-        <!-- Sign Up Button -->
-        <androidx.cardview.widget.CardView
+        <!-- Sign Up Button remplacé par MaterialButton -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/signupButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="16dp"
+            android:text="Créer un compte"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#9C27B0"
+            android:textColor="@android:color/white"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
+            android:text="OU"
+            android:textAlignment="center"
+            android:textColor="#666666"
+            android:layout_marginVertical="24dp"/>
 
-            <Button
-                android:id="@+id/signupButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Créer un compte"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:backgroundTint="#9C27B0"
-                android:textColor="@android:color/white"/>
-        </androidx.cardview.widget.CardView>
+        <!-- Google Sign In Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/googleSignInButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="Se connecter avec Google"
+            android:textAllCaps="false"
+            android:textColor="#5F6368"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="#E0E0E0"
+            android:backgroundTint="@android:color/white"
+            app:icon="@drawable/ic_google"
+            app:iconGravity="start"
+            app:iconPadding="8dp"
+            app:iconTint="@null"/>
+
     </LinearLayout>
 
 </LinearLayout>
