@@ -58,5 +58,18 @@
         <activity android:name=".reservation.ReservationActivity" android:exported="false"/>
         <activity android:name=".equipe.TeamActivity" android:exported="true"> </activity>
         <activity android:name=".equipe.DisplayTeam" android:exported="false"> </activity>
+        <activity android:name=".reclamation.ReclamationsListActivity"/>
+        <activity android:name=".reclamation.NextActivity" android:exported="true"> </activity>
+        <!--  Page Reclamation  -->
+        <activity android:name=".reclamation.ReclamationActivity"> </activity>
+        <activity android:name=".payment.PaymentActivity"> </activity>
+        <activity
+            android:name=".terrain.TerrainActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".terrain.AddEditTerrainActivity"
+            android:exported="true">
+        </activity>
     </application>
 </manifest>

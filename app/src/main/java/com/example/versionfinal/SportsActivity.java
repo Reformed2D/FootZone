@@ -7,7 +7,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.versionfinal.equipe.TeamActivity;
+import com.example.versionfinal.reclamation.ReclamationActivity;
 import com.example.versionfinal.reservation.ReservationActivity;
+import com.example.versionfinal.terrain.TerrainActivity;
 
 public class SportsActivity extends AppCompatActivity {
 
@@ -40,10 +42,18 @@ public class SportsActivity extends AppCompatActivity {
 
     private void handleCardClick(String sportName, int position) {
         switch (position) {
+            case 0: // Premier card (Tennis) - Pour le terrain
+                Intent intent = new Intent(SportsActivity.this, TerrainActivity.class);
+                startActivity(intent);
+                break;
+            case 1: // Reservation
+                startActivity(new Intent(this, TerrainActivity.class));
+                break;
             case 2: // Reservation
                 startActivity(new Intent(this, ReservationActivity.class));
                 break;
-            case 3: // Reclamation
+            case 3:   startActivity(new Intent(this, ReclamationActivity.class));
+                break;
             case 4: // Equipe
                 startActivity(new Intent(this, TeamActivity.class));
                 break;

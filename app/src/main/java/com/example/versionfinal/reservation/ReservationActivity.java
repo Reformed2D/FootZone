@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.versionfinal.R;
+import com.example.versionfinal.payment.PaymentActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -164,19 +165,16 @@ public class ReservationActivity extends AppCompatActivity {
             }
 
             double price = Double.parseDouble(priceString);
-            // Here you can add your payment processing logic
-            // For example, you might show a dialog or navigate to a payment page
-            Toast.makeText(this, "Processing payment of $" + price, Toast.LENGTH_SHORT).show();
 
-            // To simulate completing a payment:
-            // Clear the price field after payment for demonstration purposes
-            priceEdit.setText("");
+            // Créer et lancer l'intent vers PaymentActivity
+            Intent intent = new Intent(this, PaymentActivity.class);
+            intent.putExtra("PRICE", price);  // Passer le prix à l'activité de paiement
+            startActivity(intent);
 
         } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid price. Please check your input.", Toast.LENGTH_SHORT).show();
         }
     }
-
     private void clearFields() {
         clientNameEdit.setText("");
         fieldNumberEdit.setText("");
