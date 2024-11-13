@@ -16,7 +16,7 @@ public class ReclamationActivity extends AppCompatActivity {
     private Spinner typeSpinner;
     private Button submitReclamationButton;
     private DatabaseHelper databaseHelper;
-    private String[] reclamationTypes = {"Problème technique", "Problème de communication", "Autre"};
+    private String[] reclamationTypes = {"Problème de réservation de terrain", "Problème avec le paiement de la réservation du terrain de communication", "Problème d’entretien du terrain","Problème de comportement ou d'incidents durant les matchs","Autre"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
