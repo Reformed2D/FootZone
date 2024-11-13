@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rounded_dialog_background"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ajouter une carte"
+        android:textColor="#1A1A1A"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <!-- Numéro de carte -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:startIconDrawable="@drawable/ic_credit_card"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="#635BFF"
+        app:hintTextColor="#635BFF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardNumberInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numéro de carte"
+            android:inputType="number"
+            android:maxLength="19" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <!-- Date d'expiration -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="#635BFF"
+            app:hintTextColor="#635BFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryDateInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="MM / AA"
+                android:inputType="date"
+                android:maxLength="5" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Code CVC -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            app:boxBackgroundColor="@color/white"
+            app:boxStrokeColor="#635BFF"
+            app:hintTextColor="#635BFF">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cvcInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CVC"
+                android:inputType="numberPassword"
+                android:maxLength="4" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Pays/Région -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@+id/countryDropdown"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:text="Tunisia" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Code postal -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:boxBackgroundColor="@color/white"
+        app:boxStrokeColor="#635BFF"
+        app:hintTextColor="#635BFF">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/zipInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Code postal"
+            android:inputType="number"
+            android:maxLength="4" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Sauvegarder la carte -->
+    <CheckBox
+        android:id="@+id/saveCardCheckbox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Sauvegarder cette carte pour les prochains paiements"
+        android:textColor="#666666" />
+
+    <!-- Bouton Payer -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/payButton"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:text="Payer"
+        android:textAllCaps="false"
+        app:backgroundTint="#635BFF"
+        app:cornerRadius="28dp" />
+
+</LinearLayout>
