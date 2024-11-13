@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <color android:color="#4CAF50" /> <!-- Green background -->
+    </item>
+    <item>
+        <bitmap
+            android:src="@drawable/football_field"
+            android:tileMode="disabled"
+            android:gravity="center" /> <!-- Add a football field image -->
+    </item>
+</layer-list>
