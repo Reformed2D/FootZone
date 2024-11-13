@@ -1,148 +1,195 @@
-<LinearLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:background="@drawable/aaa"
-android:padding="24dp">
-
-<androidx.cardview.widget.CardView
-    android:layout_width="120dp"
-    android:layout_height="120dp"
-    android:layout_gravity="center"
-    app:cardCornerRadius="60dp"
-    app:cardElevation="4dp">
-
-    <ImageView
-        android:id="@+id/profile_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/ic_default_profile"
-        android:scaleType="centerCrop"
-        android:contentDescription="Profile image" />
-</androidx.cardview.widget.CardView>
-
-<Button
-    android:id="@+id/btn_change_image"
-    android:layout_width="wrap_content"
-    android:layout_height="48dp"
-    android:text="Changer l'image"
-    android:layout_gravity="center"
-    android:layout_marginTop="16dp"
-    android:textSize="14sp"
-    android:textColor="#272525"
-    android:background="@drawable/button_background"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp"
-    android:elevation="2dp" />
-
-<TextView
-    android:id="@+id/view_username"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Nom d'utilisateur"
-    android:textColor="#1D1A1A"
-    android:textSize="14sp"
-    android:layout_marginTop="24dp"
-    android:layout_marginBottom="8dp"
-    android:alpha="0.87" />
-
-<EditText
-    android:id="@+id/edit_username"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@drawable/edit_text_background"
-    android:hint="Nom d'utilisateur"
-    android:textColorHint="#80000000"
-    android:textColor="#050505"
-    android:textSize="16sp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    android:padding="24dp">
 
-<TextView
-    android:id="@+id/view_email"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Email"
-    android:textColor="#0C0C0C"
-    android:textSize="14sp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp"
-    android:alpha="0.87" />
-
-<EditText
-    android:id="@+id/edit_email"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@drawable/edit_text_background"
-    android:hint="Email"
-    android:textColorHint="#80090909"
-    android:textColor="#070707"
-    android:textSize="16sp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp" />
-
-<TextView
-    android:id="@+id/view_birthdate"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Date de naissance"
-    android:textColor="#020202"
-    android:textSize="14sp"
-    android:layout_marginTop="16dp"
-    android:layout_marginBottom="8dp"
-    android:alpha="0.87" />
-    <Spinner
-        android:id="@+id/spinner_position"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-<EditText
-    android:id="@+id/edit_birthdate"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:background="@drawable/edit_text_background"
-    android:hint="Date de naissance"
-    android:textColorHint="#80050505"
-    android:textColor="#070707"
-    android:textSize="16sp"
-    android:paddingStart="16dp"
-    android:paddingEnd="16dp" />
-
-    <RadioGroup
-        android:id="@+id/radioGroupTeam"
-        android:layout_width="match_parent"
+    <!-- Header -->
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="LET'S GO!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Complétez votre profil"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"/>
+
+    <!-- Profile Image Section -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
         android:layout_marginTop="24dp"
-        android:orientation="vertical">
+        app:cardCornerRadius="60dp"
+        app:cardElevation="4dp">
 
-        <RadioButton
-            android:id="@+id/checkbox_team"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Avec équipe"
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:buttonTint="#090909" />
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_default_profile"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
 
-        <RadioButton
-            android:id="@+id/checkbox_no_team"
-            android:layout_width="wrap_content"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_change_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Changer l'image"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#FFC107"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <!-- Form Fields -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginTop="24dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sans équipe"
-            android:textColor="#070707"
-            android:textSize="16sp"
-            android:buttonTint="#000000" />
-    </RadioGroup>
-<Button
-    android:id="@+id/btn_edit_profile"
-    android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:text="appliquer les modifications"
-    android:textColor="#090909"
-    android:textSize="16sp"
-    android:background="@drawable/button_background"
-    android:layout_marginTop="32dp"
-    android:elevation="2dp" />
+            android:orientation="vertical">
+
+            <!-- Username Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nom d'utilisateur"
+                    android:inputType="textPersonName"
+                    android:padding="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Email Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Email"
+                    android:inputType="textEmailAddress"
+                    android:padding="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Birthdate Field -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edit_birthdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Date de naissance"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:padding="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Position Spinner -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                app:boxCornerRadiusTopStart="16dp"
+                app:boxCornerRadiusTopEnd="16dp"
+                app:boxCornerRadiusBottomStart="16dp"
+                app:boxCornerRadiusBottomEnd="16dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/spinner_position"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="none"
+                    android:hint="Position"
+                    android:padding="16dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Team Selection -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="#E0E0E0">
+
+                <RadioGroup
+                    android:id="@+id/radioGroupTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/checkbox_team"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Avec équipe"
+                        android:textSize="16sp"
+                        android:padding="8dp"/>
+
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/checkbox_no_team"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sans équipe"
+                        android:textSize="16sp"
+                        android:padding="8dp"/>
+                </RadioGroup>
+            </com.google.android.material.card.MaterialCardView>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Submit Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Appliquer les modifications"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#9C27B0"/>
 
 </LinearLayout>

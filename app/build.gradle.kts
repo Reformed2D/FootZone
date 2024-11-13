@@ -34,6 +34,7 @@ android {
 dependencies {
     // Material Design
     implementation("com.google.android.material:material:1.9.0")
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
     // AndroidX et autres dépendances
     implementation(libs.appcompat)
