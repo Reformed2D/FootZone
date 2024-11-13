@@ -11,5 +11,30 @@
         <item>Défenseur</item>
         <item>Milieu</item>
     </string-array>
+    <string name="equipe">Team</string>
+    <string name="saisie_equipe_nom">Enter Team Name</string>
+    <string name="uploaded_image">Uploaded Image</string>
+    <string name="defenseur">Defenseur</string>
+    <string name="milieu">Milieu</string>
+    <string name="attaquant">Attaquant</string>
+    <string name="gradien">Gardien</string>
+    <string name="add_defender_left">Add Defender Left</string>
+    <string name="add_defender_right">Add Defender Right</string>
+    <string name="add_midfielder_left">Add Midfielder Left</string>
+    <string name="add_midfielder_right">Add Midfielder Right</string>
+    <string name="add_forward_left">Add Forward Left</string>
+    <string name="add_forward_right">Add Forward Right</string>
+    <string name="add_goalkeeper">Add Goalkeeper</string>
+    <string name="add_player">Ajouter un joueur</string>
+    <string name="add_player_position">Ajouter %1$s</string>
+    <string name="enter_player_name">Nom du joueur</string>
+    <string name="save">Sauvegarder</string>
+    <string name="cancel">Annuler</string>
+    <string name="name_required">Le nom est requis</string>
+
+
+        <string name="make_reservation">Make Reservation</string>
+        <string name="football_field_reservation">Football Field Reservation</string>
+
 
 </resources>

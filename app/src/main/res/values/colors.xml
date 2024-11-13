@@ -21,5 +21,11 @@
     <color name="yellow_primary">#FFC107</color>
     <color name="purple_primary">#9C27B0</color>
 
+    <color name="background_color">#FFFFFF</color>
+    <color name="primary_text_color">#212121</color>
+    <color name="secondary_text_color">#757575</color>
+    <color name="search_background">#F5F5F5</color>
+    <color name="primary_button_color">#3DDC84</color>
+
 
 </resources>

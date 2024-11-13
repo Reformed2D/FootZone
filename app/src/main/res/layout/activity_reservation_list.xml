@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:background="@color/background_color">
+
+    <!-- Search Field -->
+    <EditText
+        android:id="@+id/editTextSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search by client name or field"
+        android:padding="12dp"
+        android:inputType="text"
+        android:background="@drawable/search_background"
+        android:importantForAccessibility="yes"
+        android:contentDescription="Search reservations"
+        android:textColor="@color/primary_text_color"
+        android:textColorHint="@color/secondary_text_color"
+        android:drawableStart="@drawable/ic_search"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView for displaying reservations -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp" />
+</LinearLayout>

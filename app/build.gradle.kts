@@ -25,6 +25,15 @@ android {
             )
         }
     }
+
+    packaging {
+        resources {
+            excludes.add("META-INF/NOTICE.md")
+            excludes.add("META-INF/LICENSE.md")
+        }
+    }
+
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +44,9 @@ dependencies {
     // Material Design
     implementation("com.google.android.material:material:1.9.0")
     implementation ("com.google.android.gms:play-services-auth:20.7.0")
+    implementation ("com.sun.mail:android-mail:1.6.7")
+    implementation ("com.sun.mail:android-activation:1.6.7")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // AndroidX et autres dépendances
     implementation(libs.appcompat)

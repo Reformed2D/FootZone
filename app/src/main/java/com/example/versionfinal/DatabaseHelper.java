@@ -5,16 +5,150 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
+import com.example.versionfinal.equipe.Team;
 import com.example.versionfinal.payment.payment;
+import com.example.versionfinal.reservation.Reservation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "footballApp.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 10;
+/*****************************************************************/
+    /******************************************maram******************************************/
+// Reservation Table Constants
+    public static final String TABLE_RESERVATIONS = "reservations";
+    public static final String COLUMN_ID = "_id";                   // Primary key
+    public static final String COLUMN_CLIENT_NAME = "client_name";  // Client name
+    public static final String COLUMN_FIELD_NUMBER = "field_number"; // Field number
+    public static final String COLUMN_DATE = "date";                // Reservation date
+    public static final String COLUMN_START_TIME = "start_time";    // Start time
+    public static final String COLUMN_DURATION = "duration";        // Duration
+    public static final String COLUMN_PRICE = "price";              // Price
+    public static final String COLUMN_TERRAIN_LIST = "terrain_list"; // List of terrains
 
+    private static final String CREATE_RESERVATION_TABLE =
+            "CREATE TABLE " + TABLE_RESERVATIONS + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_CLIENT_NAME + " TEXT NOT NULL, " +
+                    COLUMN_FIELD_NUMBER + " INTEGER NOT NULL, " +
+                    COLUMN_DATE + " TEXT NOT NULL, " +
+                    COLUMN_START_TIME + " TEXT NOT NULL, " +
+                    COLUMN_DURATION + " INTEGER NOT NULL, " +
+                    COLUMN_PRICE + " REAL NOT NULL, " +
+                    COLUMN_TERRAIN_LIST + " TEXT" + ")";
+    // Get All Reservations
+    public List<Reservation> getAllReservations() {
+        List<Reservation> reservations = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null, null, null, null, null,
+                COLUMN_DATE + " ASC, " + COLUMN_START_TIME + " ASC");
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                reservations.add(cursorToReservation(cursor));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return reservations;
+    }
+
+    // Get Single Reservation
+    public Reservation getReservation(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null, COLUMN_ID + "=?", new String[]{String.valueOf(id)},
+                null, null, null);
+
+        Reservation reservation = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            reservation = cursorToReservation(cursor);
+            cursor.close();
+        }
+        return reservation;
+    }
+
+    // Update Reservation
+    public boolean updateReservation(Reservation reservation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_CLIENT_NAME, reservation.getClientName());
+        values.put(COLUMN_FIELD_NUMBER, reservation.getFieldNumber());
+        values.put(COLUMN_DATE, reservation.getDate());
+        values.put(COLUMN_START_TIME, reservation.getStartTime());
+        values.put(COLUMN_DURATION, reservation.getDuration());
+        values.put(COLUMN_PRICE, reservation.getPrice());
+        values.put(COLUMN_TERRAIN_LIST, reservation.getTerrainListAsString());
+
+        int result = db.update(TABLE_RESERVATIONS, values,
+                COLUMN_ID + "=?", new String[]{String.valueOf(reservation.getId())});
+        return result > 0;
+    }
+    public long createReservation(Reservation reservation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_CLIENT_NAME, reservation.getClientName());
+        values.put(COLUMN_FIELD_NUMBER, reservation.getFieldNumber());
+        values.put(COLUMN_DATE, reservation.getDate());
+        values.put(COLUMN_START_TIME, reservation.getStartTime());
+        values.put(COLUMN_DURATION, reservation.getDuration());
+        values.put(COLUMN_PRICE, reservation.getPrice());
+        values.put(COLUMN_TERRAIN_LIST, reservation.getTerrainListAsString());
+
+        return db.insert(TABLE_RESERVATIONS, null, values);
+    }
+    // Delete Reservation
+    public boolean deleteReservation(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_RESERVATIONS, COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}) > 0;
+    }
+
+    // Utility method to convert Cursor to Reservation
+    private Reservation cursorToReservation(Cursor cursor) {
+        Reservation reservation = new Reservation();
+
+        reservation.setId(cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+        reservation.setClientName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME)));
+        reservation.setFieldNumber(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FIELD_NUMBER)));
+        reservation.setDate(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)));
+        reservation.setStartTime(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_START_TIME)));
+        reservation.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DURATION)));
+        reservation.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE)));
+
+        String terrainList = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TERRAIN_LIST));
+        if (terrainList != null && !terrainList.isEmpty()) {
+            reservation.setTerrainListFromString(terrainList);
+        }
+
+        return reservation;
+    }
+
+    // Check if time slot is available
+    public boolean isTimeSlotAvailable(String date, String startTime, int fieldNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null,
+                COLUMN_DATE + "=? AND " + COLUMN_START_TIME + "=? AND " + COLUMN_FIELD_NUMBER + "=?",
+                new String[]{date, startTime, String.valueOf(fieldNumber)},
+                null, null, null);
+
+        boolean isAvailable = true;
+        if (cursor != null) {
+            isAvailable = cursor.getCount() == 0;
+            cursor.close();
+        }
+        return isAvailable;
+    }
+/*****************************************************************************************/
+/*****************************************************************/
     // Table Utilisateurs
     private static final String TABLE_NAME = "users";
     private static final String COL_1 = "ID";
@@ -28,7 +162,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String COL_9 = "WITHOUT_TEAM";
     private static final String COL_10 = "PROFILE_IMAGE";
     private static final String COL_11 = "IS_SUPER_ADMIN";
-
+/*******************************************************************/
+public static final String TEAM_TABLE_NAME = "team_table";
+    public static final String TEAM_COL_1 = "TEAM_ID"; // Primary key for team table
+    public static final String TEAM_COL_2 = "TEAM_NAME";
+    public static final String TEAM_COL_3 = "GOALKEEPER";
+    public static final String TEAM_COL_4 = "DEFENDER_LEFT";
+    public static final String TEAM_COL_5 = "DEFENDER_RIGHT";
+    public static final String TEAM_COL_6 = "MIDFIELDER_LEFT";
+    public static final String TEAM_COL_7 = "MIDFIELDER_RIGHT";
+    public static final String TEAM_COL_8 = "FORWARD_LEFT";
+    public static final String TEAM_COL_9 = "FORWARD_RIGHT";
+    public static final String TEAM_COL_10 = "USER_ID";
+    public static final String TEAM_IMAGE_TABLE_NAME = "team_images";
+    public static final String TEAM_IMAGE_COL_1 = "ID"; // Primary key for team images table
+    public static final String TEAM_IMAGE_COL_2 = "TEAM_ID"; // Foreign key referencing team_table
+    public static final String TEAM_IMAGE_COL_3 = "IMAGE";
+/****************************************************************************/
     // Table Paiements
     private static final String TABLE_PAYMENTS = "payments";
     private static final String PAYMENT_ID = "ID";
@@ -40,13 +190,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String PAYMENT_CARD_LAST_FOUR = "CARD_LAST_FOUR";
     private static final String PAYMENT_DESCRIPTION = "DESCRIPTION";
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
+/**************************************creation user***********************************/
 
+public DatabaseHelper(Context context) {
+    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+}
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // Création de la table utilisateurs
+        Log.d("DatabaseHelper", "onCreate called");
+        db.execSQL("PRAGMA foreign_keys = ON;");
+
+        Log.d("DatabaseHelper", "Creating database and tables...");
+        db.execSQL("CREATE TABLE " + TABLE_RESERVATIONS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_CLIENT_NAME + " TEXT NOT NULL, " +
+                COLUMN_FIELD_NUMBER + " INTEGER NOT NULL, " +
+                COLUMN_DATE + " TEXT NOT NULL, " +
+                COLUMN_START_TIME + " TEXT NOT NULL, " +
+                COLUMN_DURATION + " INTEGER NOT NULL, " +
+                COLUMN_PRICE + " REAL NOT NULL, " +
+                COLUMN_TERRAIN_LIST + " TEXT" + ")");
+        // 1. First create the users table as it's referenced by others
         String createUsersTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_2 + " TEXT, " +
@@ -61,8 +225,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_11 + " INTEGER DEFAULT 0)";
         db.execSQL(createUsersTable);
 
-        // Création de la table paiements
-        String createPaymentsTable = "CREATE TABLE " + TABLE_PAYMENTS + " (" +
+        // 2. Create the reservations table
+      ;
+
+        // 3. Create the payments table
+        db.execSQL("CREATE TABLE " + TABLE_PAYMENTS + " (" +
                 PAYMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PAYMENT_USER_EMAIL + " TEXT, " +
                 PAYMENT_AMOUNT + " REAL, " +
@@ -71,10 +238,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 PAYMENT_METHOD + " TEXT, " +
                 PAYMENT_CARD_LAST_FOUR + " TEXT, " +
                 PAYMENT_DESCRIPTION + " TEXT, " +
-                "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))";
-        db.execSQL(createPaymentsTable);
+                "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))");
 
-        // Insertion de l'administrateur par défaut
+        // 4. Create the team table
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TEAM_TABLE_NAME + " (" +
+                TEAM_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                TEAM_COL_2 + " TEXT, " +
+                TEAM_COL_3 + " TEXT, " +
+                TEAM_COL_4 + " TEXT, " +
+                TEAM_COL_5 + " TEXT, " +
+                TEAM_COL_6 + " TEXT, " +
+                TEAM_COL_7 + " TEXT, " +
+                TEAM_COL_8 + " TEXT, " +
+                TEAM_COL_9 + " TEXT, " +
+                TEAM_COL_10 + " INTEGER, " +
+                "FOREIGN KEY(" + TEAM_COL_10 + ") REFERENCES " + TABLE_NAME + "(" + COL_1 + "))");
+
+        // 5. Insert default admin
         ContentValues adminValues = new ContentValues();
         adminValues.put(COL_2, "Omar Abidi Admin");
         adminValues.put(COL_3, "omarabidiadmin@esprit.tn");
@@ -82,10 +262,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         adminValues.put(COL_5, "Super Admin");
         adminValues.put(COL_11, 1);
         db.insert(TABLE_NAME, null, adminValues);
+        Log.d("DatabaseHelper", "All tables created successfully");
     }
+    /******************************************maram******************************************/
+
+
+
+
+
+    /*****************************************************************************************/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 9) {  // Adjust as needed.
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVATIONS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENTS);
+            db.execSQL("DROP TABLE IF EXISTS " + TEAM_TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            onCreate(db);
+        }
+        Log.d("DatabaseHelper", "Upgrading database from version " + oldVersion + " to " + newVersion);
+        // Gardez les autres mises à jour
         if (oldVersion < 5) {
             db.execSQL("ALTER TABLE " + TABLE_NAME + " ADD COLUMN " + COL_11 + " INTEGER DEFAULT 0");
         }
@@ -101,6 +298,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     PAYMENT_CARD_LAST_FOUR + " TEXT, " +
                     PAYMENT_DESCRIPTION + " TEXT, " +
                     "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))";
+
             db.execSQL(createPaymentsTable);
         }
     }
@@ -248,5 +446,159 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return payments;
     }
+    /************Hadji**********************************************/
+    public Cursor getUserByID(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE ID = ?";
+        String[] selectionArgs = { String.valueOf(userId) };
+        return db.rawQuery(query, selectionArgs);
+    }
+    public int insertTeam(String teamName, String goalkeeper, String defenderLeft, String defenderRight,
+                          String midfielderLeft, String midfielderRight, String forwardLeft, String forwardRight, int userId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_COL_2, teamName);
+        contentValues.put(TEAM_COL_3, goalkeeper);
+        contentValues.put(TEAM_COL_4, defenderLeft);
+        contentValues.put(TEAM_COL_5, defenderRight);
+        contentValues.put(TEAM_COL_6, midfielderLeft);
+        contentValues.put(TEAM_COL_7, midfielderRight);
+        contentValues.put(TEAM_COL_8, forwardLeft);
+        contentValues.put(TEAM_COL_9, forwardRight);
+        contentValues.put(TEAM_COL_10, userId);  // The foreign key (userId)
+
+        long result = db.insert(TEAM_TABLE_NAME, null, contentValues);
+
+        // If insertion fails, return -1, otherwise return the team_id (result)
+        return result != -1 ? (int) result : -1;
+    }
+
+    // Insert team image
+    public boolean saveTeamImage(int teamId, String encodedImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_IMAGE_COL_2, teamId);
+        contentValues.put(TEAM_IMAGE_COL_3, encodedImage);
+        return db.insert(TEAM_IMAGE_TABLE_NAME, null, contentValues) != -1;
+    }
+
+    // Update team image
+    public boolean updateTeamImage(int teamId, String encodedImage) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_IMAGE_COL_3, encodedImage);
+        return db.update(TEAM_IMAGE_TABLE_NAME, contentValues, TEAM_IMAGE_COL_2 + "=?", new String[]{String.valueOf(teamId)}) > 0;
+    }
+
+    // Retrieve all teams
+    public Cursor getAllTeams() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TEAM_TABLE_NAME, null);
+    }
+
+    // Retrieve team by ID
+    public Team getTeamById(int teamId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        Team team = null;
+
+        try {
+            String query = "SELECT * FROM " + TEAM_TABLE_NAME + " WHERE " + TEAM_COL_1 + " = ?";
+            cursor = db.rawQuery(query, new String[]{String.valueOf(teamId)});
+
+            Log.d("DatabaseHelper", "Getting team with ID: " + teamId);
+
+            if (cursor != null && cursor.moveToFirst()) {
+                team = new Team();
+
+                team.setTeamId(cursor.getInt(cursor.getColumnIndexOrThrow(TEAM_COL_1)));
+                team.setTeamName(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_2)));
+                team.setGoalkeeper(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_3)));
+                team.setDefenderLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_4)));
+                team.setDefenderRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_5)));
+                team.setMidfielderLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_6)));
+                team.setMidfielderRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_7)));
+                team.setForwardLeft(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_8)));
+                team.setForwardRight(cursor.getString(cursor.getColumnIndexOrThrow(TEAM_COL_9)));
+
+                Log.d("DatabaseHelper", "Team found: " + team.getTeamName());
+            } else {
+                Log.d("DatabaseHelper", "No team found with ID: " + teamId);
+            }
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error getting team by ID: " + e.getMessage());
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+        }
+
+        return team;
+    }
+
+
+
+
+    // Delete team
+    public void deleteTeam(int teamId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TEAM_TABLE_NAME, TEAM_COL_1 + " = ?", new String[]{String.valueOf(teamId)});
+        db.close();
+    }
+    public Cursor getTeamByUserId(int userId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        try {
+            String query = "SELECT * FROM " + TEAM_TABLE_NAME + " WHERE " + TEAM_COL_10 + " = ?";
+            Log.d("DatabaseHelper", "Getting team for user ID: " + userId);
+            Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(userId)});
+
+            if (cursor != null && cursor.moveToFirst()) {
+                Log.d("DatabaseHelper", "Found team for user");
+            } else {
+                Log.d("DatabaseHelper", "No team found for user");
+            }
+
+            return cursor;
+        } catch (Exception e) {
+            Log.e("DatabaseHelper", "Error getting team by user ID: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+    public boolean updateTeam(int teamId, String teamName, String goalkeeper, String defenderLeft, String defenderRight,
+                              String midfielderLeft, String midfielderRight, String forwardLeft, String forwardRight) {
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_COL_2, teamName);
+        contentValues.put(TEAM_COL_3, goalkeeper);
+        contentValues.put(TEAM_COL_4, defenderLeft);
+        contentValues.put(TEAM_COL_5, defenderRight);
+        contentValues.put(TEAM_COL_6, midfielderLeft);
+        contentValues.put(TEAM_COL_7, midfielderRight);
+        contentValues.put(TEAM_COL_8, forwardLeft);
+        contentValues.put(TEAM_COL_9, forwardRight);
+
+        // Update the team with the given teamId
+        int result = db.update(TEAM_TABLE_NAME, contentValues, TEAM_COL_1 + " = ?", new String[]{String.valueOf(teamId)});
+        db.close();
+
+        return result > 0; // Return true if update was successful
+    }
+    public boolean removePlayerFromTeam(int teamId, String positionColumn) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.putNull(positionColumn);
+
+        int result = db.update(TEAM_TABLE_NAME, contentValues, TEAM_COL_1 + " = ?",
+                new String[]{String.valueOf(teamId)});
+        db.close();
+
+        return result > 0;
+    }
+
 
 }

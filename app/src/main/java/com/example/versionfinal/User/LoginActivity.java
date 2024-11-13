@@ -1,6 +1,7 @@
 package com.example.versionfinal.User;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -240,6 +241,16 @@ public class LoginActivity extends AppCompatActivity {
                 navigateToAdmin();
             } else {
                 navigateToProfile(email);
+            }
+            int userIdIndex = cursor.getColumnIndex("ID");
+            if (userIdIndex != -1) {
+                int userId = cursor.getInt(userIdIndex);
+                // Save the user ID in SharedPreferences
+                SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putInt("user_id", userId);  // Store the userId fetched from the database
+                editor.apply();
+                Log.d("LoginActivity", "User ID saved: " + userId);  // Optional: Log to verify
             }
             cursor.close();
         }

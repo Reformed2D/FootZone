@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.versionfinal.DatabaseHelper;
 import com.example.versionfinal.R;
+import com.example.versionfinal.equipe.TeamActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -149,8 +150,13 @@ public class ProfileActivity extends AppCompatActivity {
             if (isUpdated) {
                 Toast.makeText(this, "Profil mis à jour avec succès", Toast.LENGTH_SHORT).show();
                 loadUserData(email);
+                if (withTeam) {
+                    Intent intent = new Intent(ProfileActivity.this, TeamActivity.class);
+                    startActivity(intent);
+                    finish();  // Close ProfileActivity to prevent going back to it
+                }
             } else {
-                Toast.makeText(this, "Échec de la mise à jour du profil", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Profile update failed", Toast.LENGTH_SHORT).show();
             }
         }
     }
