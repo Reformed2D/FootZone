@@ -93,10 +93,13 @@ android:padding="24dp">
     android:layout_marginTop="16dp"
     android:layout_marginBottom="8dp"
     android:alpha="0.87" />
+
     <Spinner
         android:id="@+id/spinner_position"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:entries="@array/position_array"/>
+
 <EditText
     android:id="@+id/edit_birthdate"
     android:layout_width="match_parent"

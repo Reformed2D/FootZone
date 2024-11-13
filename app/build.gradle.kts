@@ -31,13 +31,6 @@ android {
     }
 }
 dependencies {
-<<<<<<< Updated upstream
-    // Material Design
-    implementation("com.google.android.material:material:1.9.0")
-
-    // AndroidX et autres dépendances
-=======
->>>>>>> Stashed changes
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)

@@ -340,5 +340,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return result > 0;
     }
-
+    public Cursor getPlayersWithoutTeam() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_9 + " = 0", null);
+    }
 }

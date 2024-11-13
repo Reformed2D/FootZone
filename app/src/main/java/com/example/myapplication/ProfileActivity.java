@@ -57,14 +57,10 @@ public class ProfileActivity extends AppCompatActivity {
         checkboxTeam = findViewById(R.id.checkbox_team);
         checkboxNoTeam = findViewById(R.id.checkbox_no_team);
         positionSpinner = findViewById(R.id.spinner_position);
-
-        // Set up spinner for positions
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.roles_array, android.R.layout.simple_spinner_item);
+        R.array.position_array, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         positionSpinner.setAdapter(adapter);
-
-        // Load user data
         Intent intent = getIntent();
         String email = intent.getStringExtra("email");
         loadUserData(email);

@@ -1,20 +1,4 @@
 <resources>
-<<<<<<< Updated upstream
-    <string name="app_name">FootZone</string>
-    <string-array name="roles_array">
-        <item>Player</item>
-        <item>Utilisateur</item>
-        <item>Administrateur</item>
-    </string-array>
-    <string-array name="positions_array">
-        <item>Gardien</item>
-        <item>Attaquant</item>
-        <item>Défenseur</item>
-        <item>Milieu</item>
-    </string-array>
-
-</resources>
-=======
 
     <string name="equipe">Team</string>
     <string name="saisie_equipe_nom">Enter Team Name</string>
@@ -37,4 +21,3 @@
     <string name="cancel">Annuler</string>
     <string name="name_required">Le nom est requis</string>
 </resources>
->>>>>>> Stashed changes

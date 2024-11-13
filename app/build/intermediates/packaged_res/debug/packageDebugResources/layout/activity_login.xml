@@ -1,138 +1,59 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@android:color/white"
-    android:padding="24dp">
+    android:gravity="center"
+    android:background="@drawable/football_field_background"
+    android:padding="16dp">
 
-    <!-- Header Section -->
+    <!-- Email Field -->
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Password Field -->
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:layout_marginTop="10dp"
+        android:backgroundTint="#FFFFFF"
+        android:alpha="0.8"
+        android:background="@drawable/rounded_border_light_blue"
+        android:textColor="#000000" />
+
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Se Connecter"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/green_button_gradient"
+        android:layout_marginTop="20dp"
+        android:padding="14dp" />
+
+    <!-- Sign-up Text -->
     <TextView
+        android:id="@+id/txt_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LET'S GO!"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginTop="48dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Connectez-vous pour continuer"
-        android:textColor="#666666"
+        android:text="Pas encore inscrit ? Créer un compte"
+        android:textColor="#FFFFFF"
         android:textSize="16sp"
-        android:layout_marginTop="8dp"/>
-
-    <!-- Login Form -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="48dp">
-
-        <!-- Email Field -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusBottomEnd="16dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/emailEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:inputType="textEmailAddress"
-                android:padding="16dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Password Field -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            app:boxCornerRadiusTopStart="16dp"
-            app:boxCornerRadiusTopEnd="16dp"
-            app:boxCornerRadiusBottomStart="16dp"
-            app:boxCornerRadiusBottomEnd="16dp"
-            app:passwordToggleEnabled="true"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/passwordEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Mot de passe"
-                android:inputType="textPassword"
-                android:padding="16dp"/>
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Login Button -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <Button
-                android:id="@+id/loginButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Se connecter"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:backgroundTint="#FFC107"
-                android:textColor="@android:color/white"/>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Progress Bar -->
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:visibility="gone"
-            android:layout_marginTop="16dp"/>
-    </LinearLayout>
-
-    <!-- Sign Up Section -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="32dp">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="OU"
-            android:textAlignment="center"
-            android:textColor="#666666"/>
-
-        <!-- Sign Up Button -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="0dp">
-
-            <Button
-                android:id="@+id/signupButton"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:text="Créer un compte"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                android:backgroundTint="#9C27B0"
-                android:textColor="@android:color/white"/>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center" />
 </LinearLayout>

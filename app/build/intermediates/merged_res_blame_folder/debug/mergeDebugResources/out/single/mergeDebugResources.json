@@ -1,266 +1,242 @@
 [
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_terrain.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/terrain.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_circle_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\circle_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_dialog_card_input.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/dialog_card_input.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_rounded_border_white.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\rounded_border_white.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_gradient_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/gradient_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_login.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_login.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "com.example.myapplication.app-debug-33:/layout_displayteam.xml.flat",
+        "source": "com.example.myapplication.app-main-35:/layout/displayteam.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_profile.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_profile.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_soussa.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/soussa.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_profile.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_profile.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_intro.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_intro.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xxxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_equipe.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/equipe.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_image_placeholder.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_image_placeholder.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_field_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/football_field_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_intro.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_intro.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_reseravation.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/reseravation.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_bottom_sheet_player.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\bottom_sheet_player.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_edit.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_edit.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_sports.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_sports.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_camera.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_camera.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_launcher_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_credit_card.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_credit_card.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_pitch.png.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\pitch.png"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_border_white.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_border_white.xml"
+        "merged": "com.example.myapplication.app-debug-33:/layout_item_player_recruit.xml.flat",
+        "source": "com.example.myapplication.app-main-35:/layout/item_player_recruit.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_product.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_product.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ss.png.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ss.png"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_admin.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_admin.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_benzart.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/benzart.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_login.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_login.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\raw_appp.mp4.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\raw\\appp.mp4"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_layout_payment_item.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/layout_payment_item.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_displayteam.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\displayteam.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/xml_backup_rules.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/xml/backup_rules.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\menu_drawer_menu.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\menu\\drawer_menu.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_user.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_user.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_save.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_save.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_statistique.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/statistique.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_players.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\players.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_main.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_main.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_user_list_item.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\user_list_item.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_chebba.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/chebba.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_main_activity.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\main_activity.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "com.example.myapplication.app-debug-33:/layout_player_item_layout.xml.flat",
+        "source": "com.example.myapplication.app-main-35:/layout/player_item_layout.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_logo.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_logo.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_football_field.jpg.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\football_field.jpg"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_payment.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_payment.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_aa.jpg.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\aa.jpg"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_item_city.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/item_city.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_main.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_button_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/button_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_button_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\button_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_circle_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/circle_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_gradient_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\gradient_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\color_green_500.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\color\\green_500.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_brand_logo.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_brand_logo.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/xml_data_extraction_rules.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/xml/data_extraction_rules.xml"
+        "merged": "com.example.myapplication.app-debug-33:/layout_item_player.xml.flat",
+        "source": "com.example.myapplication.app-main-35:/layout/item_player.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_aa.jpg.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/aa.jpg"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_rounded_border_light_blue.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\rounded_border_light_blue.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_logo.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/football_logo.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_launcher_foreground.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_payment_history.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_payment_history.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-mdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_jendouba.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/jendouba.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_green_button_gradient.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\green_button_gradient.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_field.jpg.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/football_field.jpg"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-mdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_camera.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_camera.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ss.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ss.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_football_logo.png.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\football_logo.png"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "com.example.myapplication.app-debug-33:/layout_activity_recruit_players.xml.flat",
+        "source": "com.example.myapplication.app-main-35:/layout/activity_recruit_players.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_user_list_item.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/user_list_item.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_edit_text_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\edit_text_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_stripe.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_stripe.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_border_light_blue.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_border_light_blue.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_edit_text_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/edit_text_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\xml_data_extraction_rules.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\xml\\data_extraction_rules.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_default_profile.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_default_profile.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_aaa.jpg.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\aaa.jpg"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_recruit_players.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_recruit_players.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_dinar.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_dinar.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_football_field_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\football_field_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_launcher_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_launcher_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\xml_backup_rules.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_tunis.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/tunis.png"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_player_edit_background.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\player_edit_background.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_item_player.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\item_player.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_launcher_foreground.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_admin.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_admin.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_activity_signup.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\activity_signup.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/raw_appp.mp4.flat",
-        "source": "com.example.versionfinal.app-main-33:/raw/appp.mp4"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_google_pay.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/ic_google_pay.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\layout_nav_header.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\layout\\nav_header.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_green_button_gradient.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/green_button_gradient.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_default_profile.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_default_profile.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_rounded_logo.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\rounded_logo.xml"
     },
     {
-        "merged": "com.example.versionfinal.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_reclamation.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/reclamation.png"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_aaa.jpg.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/aaa.jpg"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_signup.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/activity_signup.xml"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/layout_dropdown_item.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/layout/dropdown_item.xml"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_gabes.png.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/gabes.png"
-    },
-    {
-        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_dialog_background.xml.flat",
-        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_dialog_background.xml"
+        "merged": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-debug-33:\\drawable_ic_delete.xml.flat",
+        "source": "C:\\Users\\admin\\.gradle\\daemon\\8.7\\com.example.myapplication.app-main-35:\\drawable\\ic_delete.xml"
     }
 ]

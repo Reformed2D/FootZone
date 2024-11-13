@@ -1,19 +1,17 @@
 package com.example.myapplication;
 
 public class Player {
-    public String name;
-    public String position;
+    private int id;
+    private String username;
+    private String position;
 
-    public Player(String name, String position) {
-        this.name = name;
-        this.position = position;
-    }
+    // Getters and Setters
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
 
-    public String getPosition() {
-        return position;
-    }
+    public String getPosition() { return position; }
+    public void setPosition(String position) { this.position = position; }
 }

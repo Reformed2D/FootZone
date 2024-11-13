@@ -55,16 +55,17 @@
                   android:exported="true">
         </activity>
         <activity
-<<<<<<< Updated upstream
-            android:name=".SportsActivity"
-            android:exported="false"/>
-=======
+            android:name=".RecruitPlayersActivity"
+            android:exported="false" />
+        <activity
             android:name=".DisplayTeam"
             android:exported="false">
         </activity>
->>>>>>> Stashed changes
+
+
     </application>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
 </manifest>

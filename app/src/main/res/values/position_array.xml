@@ -1,0 +1,8 @@
+<resources>
+    <string-array name="position_array">
+        <item>Attack</item>
+        <item>Milieu</item>
+        <item>Defenseur</item>
+        <item>Gardien</item>
+    </string-array>
+</resources>

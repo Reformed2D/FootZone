@@ -2,6 +2,5 @@
     <string-array name="roles_array">
         <item>Responsable</item>
         <item>Player</item>
-        <!-- Add other roles as needed -->
     </string-array>
 </resources>

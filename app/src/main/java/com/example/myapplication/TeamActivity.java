@@ -24,21 +24,24 @@ public class TeamActivity extends AppCompatActivity {
     private FloatingActionButton saveButton;
     private DatabaseHelper databaseHelper;
     private Button recruitPlayersButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.item_player);
-        recruitPlayersButton = findViewById(R.id.recruitPlayersButton);
 
-        // Set OnClickListener to navigate to RecruitPlayersActivity
+        // Initialize recruitPlayersButton
+        recruitPlayersButton = findViewById(R.id.recruitPlayersButton);
         recruitPlayersButton.setOnClickListener(v -> {
-            //Intent intent = new Intent(TeamActivity.this, PlayersWithoutTeamActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(TeamActivity.this, RecruitPlayersActivity.class);
+            startActivity(intent);
         });
+
+        // Initialize other views
         databaseHelper = new DatabaseHelper(this);
         initializeViews();
 
-        // Check if user already has a team first
+        // Check if user already has a team
         SharedPreferences preferences = getSharedPreferences("UserPrefs", MODE_PRIVATE);
         int userId = preferences.getInt("user_id", -1);
 

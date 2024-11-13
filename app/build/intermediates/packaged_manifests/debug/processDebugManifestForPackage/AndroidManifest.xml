@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.versionfinal"
+    package="com.example.myapplication"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -8,11 +8,15 @@
         android:minSdkVersion="24"
         android:targetSdkVersion="34" />
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
     <permission
-        android:name="com.example.versionfinal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+        android:name="com.example.myapplication.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.example.versionfinal.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+    <uses-permission android:name="com.example.myapplication.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
 
     <application
         android:allowBackup="true"
@@ -22,7 +26,7 @@
         android:extractNativeLibs="false"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ss"
-        android:label="@string/app_name"
+        android:label="FootZone"
         android:roundIcon="@drawable/ss"
         android:supportsRtl="true"
         android:testOnly="true"
@@ -30,7 +34,7 @@
 
         <!-- Page Intro avec vidéo -->
         <activity
-            android:name="com.example.versionfinal.User.IntroActivity"
+            android:name="com.example.myapplication.IntroActivity"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,43 +42,59 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.versionfinal.User.ProfileActivity"
-            android:exported="true" >
-        </activity>
+
         <!-- Page Login -->
         <activity
-            android:name="com.example.versionfinal.User.LoginActivity"
+            android:name="com.example.myapplication.LoginActivity"
             android:exported="true" >
         </activity>
 
         <!-- Page Inscription -->
         <activity
-            android:name="com.example.versionfinal.User.SignupActivity"
+            android:name="com.example.myapplication.SignupActivity"
             android:exported="true" >
         </activity>
 
         <!-- Page principale après la connexion -->
         <activity
-            android:name="com.example.versionfinal.MainActivity"
+            android:name="com.example.myapplication.MainActivity"
             android:exported="true" >
         </activity>
 
         <!-- Page Profil -->
-
+        <activity
+            android:name="com.example.myapplication.ProfileActivity"
+            android:exported="true" >
+        </activity>
 
         <!-- Page Admin -->
         <activity
-            android:name="com.example.versionfinal.User.AdminActivity"
+            android:name="com.example.myapplication.AdminActivity"
             android:exported="true" >
         </activity>
         <activity
-            android:name="com.example.versionfinal.SportsActivity"
+            android:name="com.example.myapplication.TeamActivity"
+            android:exported="true" >
+        </activity>
+        <activity
+            android:name="com.example.myapplication.RecruitPlayersActivity"
             android:exported="false" />
+        <activity
+            android:name="com.example.myapplication.DisplayTeam"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.example.versionfinal.androidx-startup"
+            android:authorities="com.example.myapplication.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"
