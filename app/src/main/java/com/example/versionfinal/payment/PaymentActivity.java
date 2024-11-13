@@ -2,289 +2,175 @@ package com.example.versionfinal.payment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.CheckBox;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.example.versionfinal.DatabaseHelper;
 import com.example.versionfinal.R;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
-import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    private TextInputLayout amountInputLayout;
-    private TextInputEditText amountInput;
-    private MaterialButton payButton;
-    private DatabaseHelper dbHelper;
-    private double totalAmount = 0.00;
-    private String userEmail;
-
-    // UI Elements pour le dialog de carte
-    private Dialog cardDialog;
-    private TextInputEditText cardNumberInput;
-    private TextInputEditText expiryDateInput;
-    private TextInputEditText cvcInput;
-    private TextInputEditText zipInput;
-    private AutoCompleteTextView countryDropdown;
-    private CheckBox saveCardCheckbox;
-    private MaterialButton dialogPayButton;
+    private EditText cardNumberEdit;
+    private EditText expiryDateEdit;
+    private EditText cvvEdit;
+    private EditText cardHolderEdit;
+    private RadioGroup paymentMethodGroup;
+    private Button confirmPaymentButton;
+    private TextView amountTextView;
+    private double amount;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
-        dbHelper = new DatabaseHelper(this);
-        userEmail = getIntent().getStringExtra("USER_EMAIL");
+        // Récupérer le montant passé en extra
+        amount = getIntent().getDoubleExtra("PRICE", 0.0);
 
-        initializeViews();
-        setupClickListeners();
-        setupAmountInput();
+        // Initialiser les vues
+        initViews();
+
+        // Configurer les listeners
+        setupListeners();
+
+        // Afficher le montant
+        amountTextView.setText(String.format("Montant à payer : %.2f €", amount));
     }
 
-    private void initializeViews() {
-        // Initialize main activity views
-        amountInputLayout = findViewById(R.id.amountInput);
-        amountInput = findViewById(R.id.amountEditText);
-        payButton = findViewById(R.id.payButton);
-
-        // Setup toolbar
-        ImageView brandLogo = findViewById(R.id.brandLogo);
-        ImageView userIcon = findViewById(R.id.userIcon);
-
-        // Initialize card dialog
-        cardDialog = new Dialog(this);
-        cardDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        cardDialog.setContentView(R.layout.dialog_card_input);
-        cardDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_dialog_background);
-
-        // Initialize dialog views
-        cardNumberInput = cardDialog.findViewById(R.id.cardNumberInput);
-        expiryDateInput = cardDialog.findViewById(R.id.expiryDateInput);
-        cvcInput = cardDialog.findViewById(R.id.cvcInput);
-        zipInput = cardDialog.findViewById(R.id.zipInput);
-        countryDropdown = cardDialog.findViewById(R.id.countryDropdown);
-        saveCardCheckbox = cardDialog.findViewById(R.id.saveCardCheckbox);
-        dialogPayButton = cardDialog.findViewById(R.id.payButton);
-
-        // Setup country dropdown
-        String[] countries = new String[]{"Tunisia", "France", "United States", "Canada", "United Kingdom", "Germany"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                this,
-                android.R.layout.simple_dropdown_item_1line,
-                countries
-        );
-        countryDropdown.setAdapter(adapter);
+    private void initViews() {
+        cardNumberEdit = findViewById(R.id.cardNumberEdit);
+        expiryDateEdit = findViewById(R.id.expiryDateEdit);
+        cvvEdit = findViewById(R.id.cvvEdit);
+        cardHolderEdit = findViewById(R.id.cardHolderEdit);
+        paymentMethodGroup = findViewById(R.id.paymentMethodGroup);
+        confirmPaymentButton = findViewById(R.id.confirmPaymentButton);
+        amountTextView = findViewById(R.id.amountTextView);
     }
 
-    private void setupAmountInput() {
-        amountInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                try {
-                    String amountStr = s.toString().replace("$", "").replace(",", "");
-                    if (!amountStr.isEmpty()) {
-                        totalAmount = Double.parseDouble(amountStr);
-                        updatePayButtonText();
-                    }
-                } catch (NumberFormatException e) {
-                    amountInputLayout.setError("Veuillez entrer un montant valide");
-                }
-            }
-        });
-    }
-
-    private void setupClickListeners() {
-        // Main payment button
-        payButton.setOnClickListener(v -> {
-            if (validateAmount()) {
-                showCardInputDialog();
-            }
-        });
-
-        findViewById(R.id.viewHistoryButton).setOnClickListener(v -> {
-            Intent intent = new Intent(this, PaymentHistoryActivity.class);
-            intent.putExtra("USER_EMAIL", userEmail);
-            startActivity(intent);
-        });
-
-        // Dialog pay button
-        dialogPayButton.setOnClickListener(v -> processPayment());
-
-        // Setup card number formatting
-        cardNumberInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String text = s.toString();
-                if (text.length() > 0 && !text.contains(" ")) {
-                    String formatted = formatCardNumber(text);
-                    cardNumberInput.removeTextChangedListener(this);
-                    cardNumberInput.setText(formatted);
-                    cardNumberInput.setSelection(formatted.length());
-                    cardNumberInput.addTextChangedListener(this);
-                }
-            }
-        });
-
-        // Setup expiry date formatting
-        expiryDateInput.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                String text = s.toString();
-                if (text.length() == 2 && !text.contains("/")) {
-                    text += "/";
-                    expiryDateInput.setText(text);
-                    expiryDateInput.setSelection(text.length());
-                }
-            }
-        });
-    }
-
-    private boolean validateAmount() {
-        if (totalAmount <= 0) {
-            amountInputLayout.setError("Veuillez entrer un montant valide");
-            return false;
-        }
-        amountInputLayout.setError(null);
-        return true;
-    }
-
-    private void showCardInputDialog() {
-        if (cardDialog != null) {
-            dialogPayButton.setText(String.format("Payer %s", formatAmount(totalAmount)));
-            cardDialog.show();
-        }
+    private void setupListeners() {
+        confirmPaymentButton.setOnClickListener(v -> processPayment());
     }
 
     private void processPayment() {
-        if (!validateCardInputs()) {
+        if (!validateInputs()) {
             return;
         }
 
-        String cardNumber = cardNumberInput.getText().toString();
-        String expiryDate = expiryDateInput.getText().toString();
-        String cvc = cvcInput.getText().toString();
-        String zip = zipInput.getText().toString();
-        boolean saveCard = saveCardCheckbox.isChecked();
+        // Simuler un traitement de paiement
+        Toast.makeText(this, "Traitement du paiement...", Toast.LENGTH_SHORT).show();
+        confirmPaymentButton.setEnabled(false);
 
-        // Simulons un paiement réussi
-        boolean paymentSuccess = true;
-
-        if (paymentSuccess) {
-            // Mettre à jour la base de données
-            updatePaymentStatus(true);
-
-            Toast.makeText(this, "Paiement réussi!", Toast.LENGTH_SHORT).show();
-            cardDialog.dismiss();
-
-            // Ouvrir PaymentHistoryActivity
-            Intent intent = new Intent(this, PaymentHistoryActivity.class);
-            intent.putExtra("USER_EMAIL", userEmail);
-            startActivity(intent);
-
-            finish();
-        } else {
-            Toast.makeText(this, "Échec du paiement. Veuillez réessayer.", Toast.LENGTH_SHORT).show();
-        }
+        new android.os.Handler().postDelayed(() -> {
+            showReceiptDialog();
+        }, 2000);
     }
 
-    private boolean validateCardInputs() {
-        boolean isValid = true;
+    private void showReceiptDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.receipt_dialog);
+        dialog.setCancelable(false);
 
-        String cardNumber = cardNumberInput.getText().toString().replace(" ", "");
-        if (cardNumber.length() < 16) {
-            cardNumberInput.setError("Numéro de carte invalide");
-            isValid = false;
-        }
+        // Générer un numéro de transaction unique
+        String transactionId = String.format("TRX-%d", System.currentTimeMillis());
 
-        String expiry = expiryDateInput.getText().toString();
-        if (!expiry.matches("(?:0[1-9]|1[0-2])/[0-9]{2}")) {
-            expiryDateInput.setError("Date d'expiration invalide");
-            isValid = false;
-        }
+        // Récupérer les informations de paiement
+        String cardNumber = cardNumberEdit.getText().toString();
+        String maskedCard = "**** **** **** " + cardNumber.substring(cardNumber.length() - 4);
+        String cardHolder = cardHolderEdit.getText().toString();
 
-        String cvc = cvcInput.getText().toString();
-        if (cvc.length() < 3) {
-            cvcInput.setError("CVC invalide");
-            isValid = false;
-        }
+        // Formater la date
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        String currentDate = sdf.format(new Date());
 
-        String zip = zipInput.getText().toString().trim();
-        if (zip.length() < 3 || zip.length() > 10) {
-            zipInput.setError("Code postal invalide");
-            isValid = false;
-        }
+        // Configurer les vues du reçu
+        TextView receiptNumber = dialog.findViewById(R.id.receiptNumber);
+        TextView receiptDate = dialog.findViewById(R.id.receiptDate);
+        TextView receiptAmount = dialog.findViewById(R.id.receiptAmount);
+        TextView receiptCardHolder = dialog.findViewById(R.id.receiptCardHolder);
+        TextView receiptCardNumber = dialog.findViewById(R.id.receiptCardNumber);
+        ImageView qrCodeImage = dialog.findViewById(R.id.qrCodeImage);
+        Button btnClose = dialog.findViewById(R.id.btnClose);
 
-        return isValid;
-    }
+        // Définir les textes
+        String receiptNumberText = "N° Transaction: " + transactionId;
+        String receiptDateText = "Date: " + currentDate;
+        String receiptAmountText = String.format("Montant: %.2f €", amount);
+        String receiptCardHolderText = "Titulaire: " + cardHolder;
+        String receiptCardNumberText = "Carte: " + maskedCard;
 
-    private void updatePaymentStatus(boolean success) {
-        dbHelper.recordPayment(
-                userEmail,
-                totalAmount,
-                "CARD",
-                cardNumberInput.getText().toString().substring(cardNumberInput.length() - 4)
+        receiptNumber.setText(receiptNumberText);
+        receiptDate.setText(receiptDateText);
+        receiptAmount.setText(receiptAmountText);
+        receiptCardHolder.setText(receiptCardHolderText);
+        receiptCardNumber.setText(receiptCardNumberText);
+
+        // Générer le contenu du QR code
+        String qrCodeContent = String.format(
+                "Transaction: %s\nDate: %s\nMontant: %.2f €\nTitulaire: %s\nCarte: %s",
+                transactionId,
+                currentDate,
+                amount,
+                cardHolder,
+                maskedCard
         );
-    }
 
-    private String formatCardNumber(String number) {
-        StringBuilder formatted = new StringBuilder();
-        for (int i = 0; i < number.length(); i++) {
-            if (i > 0 && i % 4 == 0) {
-                formatted.append(" ");
-            }
-            formatted.append(number.charAt(i));
+        // Générer et afficher le QR code
+        Bitmap qrCodeBitmap = QRCodeGenerator.generateQRCode(qrCodeContent, 500, 500);
+        if (qrCodeBitmap != null) {
+            qrCodeImage.setImageBitmap(qrCodeBitmap);
         }
-        return formatted.toString();
+
+        // Configurer le bouton de fermeture
+        btnClose.setOnClickListener(v -> {
+            dialog.dismiss();
+            setResult(RESULT_OK);
+            finish();
+        });
+
+        // Afficher le dialog
+        dialog.show();
     }
 
-    private String formatAmount(double amount) {
-        NumberFormat format = NumberFormat.getCurrencyInstance(Locale.FRANCE);
-        return format.format(amount);
-    }
+    private boolean validateInputs() {
+        String cardNumber = cardNumberEdit.getText().toString().trim();
+        String expiryDate = expiryDateEdit.getText().toString().trim();
+        String cvv = cvvEdit.getText().toString().trim();
+        String cardHolder = cardHolderEdit.getText().toString().trim();
 
-    private void updatePayButtonText() {
-        if (payButton != null) {
-            payButton.setText(String.format("Payer %s", formatAmount(totalAmount)));
+        if (cardNumber.isEmpty() || cardNumber.length() < 16) {
+            showError("Numéro de carte invalide");
+            return false;
         }
+
+        if (expiryDate.isEmpty() || !expiryDate.matches("(?:0[1-9]|1[0-2])/[0-9]{2}")) {
+            showError("Date d'expiration invalide (MM/YY)");
+            return false;
+        }
+
+        if (cvv.isEmpty() || cvv.length() < 3) {
+            showError("CVV invalide");
+            return false;
+        }
+
+        if (cardHolder.isEmpty()) {
+            showError("Nom du titulaire requis");
+            return false;
+        }
+
+        return true;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (cardDialog != null && cardDialog.isShowing()) {
-            cardDialog.dismiss();
-        }
+    private void showError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }

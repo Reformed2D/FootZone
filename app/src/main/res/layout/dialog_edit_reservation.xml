@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Client Name -->
+        <EditText
+            android:id="@+id/editClientName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Client Name"
+            android:inputType="text"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Field Number -->
+        <EditText
+            android:id="@+id/editFieldNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Field Number"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Date -->
+        <EditText
+            android:id="@+id/editDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Date (yyyy-mm-dd)"
+            android:inputType="date"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Start Time -->
+        <EditText
+            android:id="@+id/editTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Start Time (HH:mm)"
+            android:inputType="time"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Duration -->
+        <EditText
+            android:id="@+id/editDuration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Duration (hours)"
+            android:inputType="number"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Price -->
+        <EditText
+            android:id="@+id/editPrice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Price"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Terrain List -->
+        <EditText
+            android:id="@+id/editTerrainList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Terrain List (comma-separated)"
+            android:inputType="text"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Button
+                android:id="@+id/buttonSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/buttonCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

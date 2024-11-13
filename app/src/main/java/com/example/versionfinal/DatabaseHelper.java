@@ -9,14 +9,174 @@ import android.util.Log;
 
 import com.example.versionfinal.equipe.Team;
 import com.example.versionfinal.payment.payment;
+import com.example.versionfinal.reclamation.Reclamation;
+import com.example.versionfinal.reservation.Reservation;
+import com.example.versionfinal.terrain.Terrain;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "footballApp.db";
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 10;
+/*****************************************************************/
+private static final String TABLE_TERRAINS = "terrains";
 
+    private static final String COLUMN_NAME = "name";
+    private static final String COLUMN_LOCALISATION = "localisation";
+    private static final String COLUMN_TYPE = "type";
+    private static final String COLUMN_STATUS = "status";
+    private static final String COLUMN_PHONE = "phone";
+
+
+    /******************************************maram******************************************/
+// Reservation Table Constants
+    static final String RECLAMATIONS_TABLE = "reclamations";
+    static final String R_COL_5 = "TYPE"; // Added type column
+    static final String R_COL_6 = "DESCRIPTION"; // Added description column
+
+    static final String R_COL_1 = "ID";
+    static final String R_COL_2 = "SUJET";
+    static final String R_COL_3 = "DETAILS";
+    private static final String R_COL_4 = "USER_ID";
+    /**************************************reclamation*********************************************/
+    public static final String TABLE_RESERVATIONS = "reservations";
+    public static final String COLUMN_ID = "_id";                   // Primary key
+    public static final String COLUMN_CLIENT_NAME = "client_name";  // Client name
+    public static final String COLUMN_FIELD_NUMBER = "field_number"; // Field number
+    public static final String COLUMN_DATE = "date";                // Reservation date
+    public static final String COLUMN_START_TIME = "start_time";    // Start time
+    public static final String COLUMN_DURATION = "duration";        // Duration
+    public static final String COLUMN_PRICE = "price";              // Price
+    public static final String COLUMN_TERRAIN_LIST = "terrain_list"; // List of terrains
+    private static final String CREATE_TERRAIN_TABLE = "CREATE TABLE " + TABLE_TERRAINS + "("
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + COLUMN_NAME + " TEXT,"
+            + COLUMN_LOCALISATION + " TEXT,"
+            + COLUMN_TYPE + " TEXT,"
+            + COLUMN_STATUS + " TEXT,"
+            + COLUMN_PHONE + " TEXT"
+            + ")";
+    private static final String CREATE_RESERVATION_TABLE =
+            "CREATE TABLE " + TABLE_RESERVATIONS + " (" +
+                    COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                    COLUMN_CLIENT_NAME + " TEXT NOT NULL, " +
+                    COLUMN_FIELD_NUMBER + " INTEGER NOT NULL, " +
+                    COLUMN_DATE + " TEXT NOT NULL, " +
+                    COLUMN_START_TIME + " TEXT NOT NULL, " +
+                    COLUMN_DURATION + " INTEGER NOT NULL, " +
+                    COLUMN_PRICE + " REAL NOT NULL, " +
+                    COLUMN_TERRAIN_LIST + " TEXT" + ")";
+    // Get All Reservations
+    public List<Reservation> getAllReservations() {
+        List<Reservation> reservations = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null, null, null, null, null,
+                COLUMN_DATE + " ASC, " + COLUMN_START_TIME + " ASC");
+
+        if (cursor != null && cursor.moveToFirst()) {
+            do {
+                reservations.add(cursorToReservation(cursor));
+            } while (cursor.moveToNext());
+            cursor.close();
+        }
+        return reservations;
+    }
+
+    // Get Single Reservation
+    public Reservation getReservation(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null, COLUMN_ID + "=?", new String[]{String.valueOf(id)},
+                null, null, null);
+
+        Reservation reservation = null;
+        if (cursor != null && cursor.moveToFirst()) {
+            reservation = cursorToReservation(cursor);
+            cursor.close();
+        }
+        return reservation;
+    }
+
+    // Update Reservation
+    public boolean updateReservation(Reservation reservation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_CLIENT_NAME, reservation.getClientName());
+        values.put(COLUMN_FIELD_NUMBER, reservation.getFieldNumber());
+        values.put(COLUMN_DATE, reservation.getDate());
+        values.put(COLUMN_START_TIME, reservation.getStartTime());
+        values.put(COLUMN_DURATION, reservation.getDuration());
+        values.put(COLUMN_PRICE, reservation.getPrice());
+        values.put(COLUMN_TERRAIN_LIST, reservation.getTerrainListAsString());
+
+        int result = db.update(TABLE_RESERVATIONS, values,
+                COLUMN_ID + "=?", new String[]{String.valueOf(reservation.getId())});
+        return result > 0;
+    }
+    public long createReservation(Reservation reservation) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_CLIENT_NAME, reservation.getClientName());
+        values.put(COLUMN_FIELD_NUMBER, reservation.getFieldNumber());
+        values.put(COLUMN_DATE, reservation.getDate());
+        values.put(COLUMN_START_TIME, reservation.getStartTime());
+        values.put(COLUMN_DURATION, reservation.getDuration());
+        values.put(COLUMN_PRICE, reservation.getPrice());
+        values.put(COLUMN_TERRAIN_LIST, reservation.getTerrainListAsString());
+
+        return db.insert(TABLE_RESERVATIONS, null, values);
+    }
+    // Delete Reservation
+    public boolean deleteReservation(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.delete(TABLE_RESERVATIONS, COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)}) > 0;
+    }
+
+    // Utility method to convert Cursor to Reservation
+    private Reservation cursorToReservation(Cursor cursor) {
+        Reservation reservation = new Reservation();
+
+        reservation.setId(cursor.getLong(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+        reservation.setClientName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CLIENT_NAME)));
+        reservation.setFieldNumber(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_FIELD_NUMBER)));
+        reservation.setDate(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DATE)));
+        reservation.setStartTime(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_START_TIME)));
+        reservation.setDuration(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_DURATION)));
+        reservation.setPrice(cursor.getDouble(cursor.getColumnIndexOrThrow(COLUMN_PRICE)));
+
+        String terrainList = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TERRAIN_LIST));
+        if (terrainList != null && !terrainList.isEmpty()) {
+            reservation.setTerrainListFromString(terrainList);
+        }
+
+        return reservation;
+    }
+
+    // Check if time slot is available
+    public boolean isTimeSlotAvailable(String date, String startTime, int fieldNumber) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_RESERVATIONS,
+                null,
+                COLUMN_DATE + "=? AND " + COLUMN_START_TIME + "=? AND " + COLUMN_FIELD_NUMBER + "=?",
+                new String[]{date, startTime, String.valueOf(fieldNumber)},
+                null, null, null);
+
+        boolean isAvailable = true;
+        if (cursor != null) {
+            isAvailable = cursor.getCount() == 0;
+            cursor.close();
+        }
+        return isAvailable;
+    }
+/*****************************************************************************************/
+/*****************************************************************/
     // Table Utilisateurs
     private static final String TABLE_NAME = "users";
     private static final String COL_1 = "ID";
@@ -58,14 +218,28 @@ public static final String TEAM_TABLE_NAME = "team_table";
     private static final String PAYMENT_CARD_LAST_FOUR = "CARD_LAST_FOUR";
     private static final String PAYMENT_DESCRIPTION = "DESCRIPTION";
 
-    public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
-    }
 /**************************************creation user***********************************/
+
+public DatabaseHelper(Context context) {
+    super(context, DATABASE_NAME, null, DATABASE_VERSION);
+}
     @Override
     public void onCreate(SQLiteDatabase db) {
+        Log.d("DatabaseHelper", "onCreate called");
         db.execSQL("PRAGMA foreign_keys = ON;");
-        // Création de la table utilisateurs
+
+        Log.d("DatabaseHelper", "Creating database and tables...");
+        db.execSQL("CREATE TABLE " + TABLE_RESERVATIONS + " (" +
+                COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                COLUMN_CLIENT_NAME + " TEXT NOT NULL, " +
+                COLUMN_FIELD_NUMBER + " INTEGER NOT NULL, " +
+                COLUMN_DATE + " TEXT NOT NULL, " +
+                COLUMN_START_TIME + " TEXT NOT NULL, " +
+                COLUMN_DURATION + " INTEGER NOT NULL, " +
+                COLUMN_PRICE + " REAL NOT NULL, " +
+                COLUMN_TERRAIN_LIST + " TEXT" + ")");
+        db.execSQL(CREATE_TERRAIN_TABLE);
+        // 1. First create the users table as it's referenced by others
         String createUsersTable = "CREATE TABLE " + TABLE_NAME + " (" +
                 COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COL_2 + " TEXT, " +
@@ -80,8 +254,20 @@ public static final String TEAM_TABLE_NAME = "team_table";
                 COL_11 + " INTEGER DEFAULT 0)";
         db.execSQL(createUsersTable);
 
-        /****************** Création de la table paiements*************************/
-        String createPaymentsTable = "CREATE TABLE " + TABLE_PAYMENTS + " (" +
+        // 2. Create the reservations table
+      ;
+        String createReclamationTable = "CREATE TABLE " + RECLAMATIONS_TABLE + " (" +
+                R_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                R_COL_2 + " TEXT, " +  // Sujet
+                R_COL_3 + " TEXT, " +  // Details
+                R_COL_4 + " INTEGER, " + // User ID
+                R_COL_5 + " TEXT, " +  // Type
+                R_COL_6 + " TEXT, " +  // Description
+                "FOREIGN KEY(" + R_COL_4 + ") REFERENCES " + TABLE_NAME + "(" + COL_1 + "))";
+        db.execSQL(createReclamationTable);
+
+        // 3. Create the payments table
+        db.execSQL("CREATE TABLE " + TABLE_PAYMENTS + " (" +
                 PAYMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PAYMENT_USER_EMAIL + " TEXT, " +
                 PAYMENT_AMOUNT + " REAL, " +
@@ -90,10 +276,10 @@ public static final String TEAM_TABLE_NAME = "team_table";
                 PAYMENT_METHOD + " TEXT, " +
                 PAYMENT_CARD_LAST_FOUR + " TEXT, " +
                 PAYMENT_DESCRIPTION + " TEXT, " +
-                "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))";
-        db.execSQL(createPaymentsTable);
-/************************************creation team***********************************/
-        String createTeamTable = "CREATE TABLE IF NOT EXISTS " + TEAM_TABLE_NAME + " (" +
+                "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))");
+
+        // 4. Create the team table
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + TEAM_TABLE_NAME + " (" +
                 TEAM_COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TEAM_COL_2 + " TEXT, " +
                 TEAM_COL_3 + " TEXT, " +
@@ -104,10 +290,9 @@ public static final String TEAM_TABLE_NAME = "team_table";
                 TEAM_COL_8 + " TEXT, " +
                 TEAM_COL_9 + " TEXT, " +
                 TEAM_COL_10 + " INTEGER, " +
-                "FOREIGN KEY(" + TEAM_COL_10 + ") REFERENCES " + TABLE_NAME + "(" + COL_1 + "))"; // User's table should not be touched
-        db.execSQL(createTeamTable);
+                "FOREIGN KEY(" + TEAM_COL_10 + ") REFERENCES " + TABLE_NAME + "(" + COL_1 + "))");
 
-        /***************** Insertion de l'administrateur par défaut*****************/
+        // 5. Insert default admin
         ContentValues adminValues = new ContentValues();
         adminValues.put(COL_2, "Omar Abidi Admin");
         adminValues.put(COL_3, "omarabidiadmin@esprit.tn");
@@ -115,11 +300,29 @@ public static final String TEAM_TABLE_NAME = "team_table";
         adminValues.put(COL_5, "Super Admin");
         adminValues.put(COL_11, 1);
         db.insert(TABLE_NAME, null, adminValues);
+        Log.d("DatabaseHelper", "All tables created successfully");
     }
-    /************************************************************************************/
+    /******************************************maram******************************************/
+
+
+
+
+
+    /*****************************************************************************************/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 9) {  // Adjust as needed.
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVATIONS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_TERRAINS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENTS);
+            db.execSQL("DROP TABLE IF EXISTS " + TEAM_TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + RECLAMATIONS_TABLE);
+            onCreate(db);
+        }
+        Log.d("DatabaseHelper", "Upgrading database from version " + oldVersion + " to " + newVersion);
+        // Gardez les autres mises à jour
         if (oldVersion < 5) {
             db.execSQL("ALTER TABLE " + TABLE_NAME + " ADD COLUMN " + COL_11 + " INTEGER DEFAULT 0");
         }
@@ -135,6 +338,7 @@ public static final String TEAM_TABLE_NAME = "team_table";
                     PAYMENT_CARD_LAST_FOUR + " TEXT, " +
                     PAYMENT_DESCRIPTION + " TEXT, " +
                     "FOREIGN KEY(" + PAYMENT_USER_EMAIL + ") REFERENCES " + TABLE_NAME + "(" + COL_3 + "))";
+
             db.execSQL(createPaymentsTable);
         }
     }
@@ -435,6 +639,259 @@ public static final String TEAM_TABLE_NAME = "team_table";
 
         return result > 0;
     }
+    public boolean addReclamation(String sujet, String details, String type, String description) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(R_COL_2, sujet);
+        contentValues.put(R_COL_3, details);
+        contentValues.put(R_COL_5, type);
+        contentValues.put(R_COL_6, description);
+
+        long result = db.insert(RECLAMATIONS_TABLE, null, contentValues);
+        return result != -1;
+    }
+    public ArrayList<HashMap<String, Object>> getUsersWithReclamations() {
+        ArrayList<HashMap<String, Object>> users = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM USERS", null);
+
+        // Vérifiez si le curseur contient des données
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, Object> user = new HashMap<>();
+
+                // Obtenez les index des colonnes et vérifiez leur validité
+                int idIndex = cursor.getColumnIndex("ID");
+                int usernameIndex = cursor.getColumnIndex("USERNAME");
+                int emailIndex = cursor.getColumnIndex("EMAIL");
+                int roleIndex = cursor.getColumnIndex("ROLE");
+
+                // Vérifiez si les colonnes existent
+                if (idIndex != -1 && usernameIndex != -1 && emailIndex != -1 && roleIndex != -1) {
+                    String id = cursor.getString(idIndex);
+                    String username = cursor.getString(usernameIndex);
+                    String email = cursor.getString(emailIndex);
+                    String role = cursor.getString(roleIndex);
+
+                    user.put("ID", id);
+                    user.put("USERNAME", username);
+                    user.put("EMAIL", email);
+                    user.put("ROLE", role);
+
+                    // Récupérer les réclamations pour chaque utilisateur
+                    ArrayList<Reclamation> reclamations = getReclamationsForUser(id);
+                    user.put("RECLAMATIONS", reclamations);
+
+                    users.add(user);
+                } else {
+                    Log.e("DatabaseHelper", "A required column was not found in the USERS table.");
+                }
+
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return users;
+    }
+
+    public ArrayList<Reclamation> getReclamationsForUser(String userId) {
+        ArrayList<Reclamation> reclamations = new ArrayList<>();
+        SQLiteDatabase db = null;
+        Cursor cursor = null;
+
+        try {
+            db = this.getReadableDatabase();
+            cursor = db.rawQuery("SELECT * FROM RECLAMATIONS WHERE USER_ID = ?", new String[]{userId});
+
+            if (cursor.moveToFirst()) {
+                int descriptionIndex = cursor.getColumnIndex("DESCRIPTION");
+                int typeIndex = cursor.getColumnIndex("TYPE");
+
+                do {
+                    String description = descriptionIndex != -1 ? cursor.getString(descriptionIndex) : null;
+                    String type = typeIndex != -1 ? cursor.getString(typeIndex) : null;
+                    reclamations.add(new Reclamation(description, type));
+                } while (cursor.moveToNext());
+            }
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+
+        return reclamations;
+    }
+    public ArrayList<String> getReclamationsByUserId(String userId) {
+        ArrayList<String> reclamations = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query("reclamations",
+                null,
+                "user_id = ?",
+                new String[]{userId},  // Vous devrez peut-être ajouter le champ user_id dans la table
+                null, null, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String description = cursor.getString(cursor.getColumnIndex("description"));
+                String typeReclamation = cursor.getString(cursor.getColumnIndex("type_reclamation"));
+                reclamations.add(description + " (" + typeReclamation + ")");
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return reclamations;
+    }
+    public List<HashMap<String, String>> getAllReclamations() {
+        List<HashMap<String, String>> reclamations = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(RECLAMATIONS_TABLE,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                HashMap<String, String> reclamation = new HashMap<>();
+                reclamation.put("id", cursor.getString(cursor.getColumnIndex(R_COL_1)));
+                reclamation.put("sujet", cursor.getString(cursor.getColumnIndex(R_COL_2)));
+                reclamation.put("details", cursor.getString(cursor.getColumnIndex(R_COL_3)));
+                reclamation.put("type", cursor.getString(cursor.getColumnIndex(R_COL_5)));
+                reclamation.put("description", cursor.getString(cursor.getColumnIndex(R_COL_6)));
+                reclamations.add(reclamation);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return reclamations;
+    }
 
 
+
+
+    public boolean deleteReclamation(String reclamationId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        int result = db.delete("Reclamations", "id = ?", new String[]{reclamationId});
+        db.close();
+        return result > 0; // Retourne true si une réclamation a été supprimée
+    }
+    public long addTerrain(Terrain terrain) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, terrain.getName());
+        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
+        values.put(COLUMN_TYPE, terrain.getType());
+        values.put(COLUMN_STATUS, terrain.getStatus());
+        values.put(COLUMN_PHONE, terrain.getPhone());
+
+        long id = db.insert(TABLE_TERRAINS, null, values);
+        db.close();
+        return id;
+    }
+
+    public Terrain getTerrain(int id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.query(TABLE_TERRAINS,
+                new String[]{COLUMN_ID, COLUMN_NAME, COLUMN_LOCALISATION, COLUMN_TYPE, COLUMN_STATUS, COLUMN_PHONE},
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(id)},
+                null, null, null);
+
+        if (cursor != null && cursor.moveToFirst()) {
+            Terrain terrain = new Terrain(
+                    cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_LOCALISATION)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_PHONE))
+            );
+            terrain.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            cursor.close();
+            return terrain;
+        }
+        return null;
+    }
+
+    public List<Terrain> getAllTerrains() {
+        List<Terrain> terrainList = new ArrayList<>();
+        String selectQuery = "SELECT * FROM " + TABLE_TERRAINS;
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Terrain terrain = new Terrain(
+                        cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_LOCALISATION)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_PHONE))
+                );
+                terrain.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                terrainList.add(terrain);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return terrainList;
+    }
+
+    public int updateTerrain(Terrain terrain) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, terrain.getName());
+        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
+        values.put(COLUMN_TYPE, terrain.getType());
+        values.put(COLUMN_STATUS, terrain.getStatus());
+        values.put(COLUMN_PHONE, terrain.getPhone());
+
+        return db.update(TABLE_TERRAINS, values,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(terrain.getId())});
+    }
+
+    public void deleteTerrain(Terrain terrain) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TERRAINS,
+                COLUMN_ID + "=?",
+                new String[]{String.valueOf(terrain.getId())});
+        db.close();
+    }
+
+    public List<Terrain> searchTerrainsByName(String name) {
+        List<Terrain> terrainList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT * FROM " + TABLE_TERRAINS +
+                " WHERE " + COLUMN_NAME + " LIKE '%" + name + "%'";
+
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Terrain terrain = new Terrain(
+                        cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_LOCALISATION)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_TYPE)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_STATUS)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_PHONE))
+                );
+                terrain.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+                terrainList.add(terrain);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return terrainList;
+    }
 }

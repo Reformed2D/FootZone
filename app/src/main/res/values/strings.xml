@@ -32,4 +32,14 @@
     <string name="cancel">Annuler</string>
     <string name="name_required">Le nom est requis</string>
 
+
+        <string name="make_reservation">Make Reservation</string>
+        <string name="football_field_reservation">Football Field Reservation</string>
+    <string-array name="reclamation_types">
+        <item>Non-respect des Règles</item>
+        <item>Comportement des Joueurs</item>
+        <item>Arbitrage / Décision de l\'Arbitre</item>
+        <item>Autre</item>
+    </string-array>
+
 </resources>
