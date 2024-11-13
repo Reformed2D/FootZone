@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="positions_array">
+        <item>Gardien</item>
+        <item>Attaquant</item>
+        <item>Défenseur</item>
+        <item>Milieu</item>
+    </string-array>
+    <string-array name="roles_array">
+        <item>Player</item>
+        <item>Utilisateur</item>
+        <item>Administrateur</item>
+    </string-array>
+    <color name="black">#FF000000</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="divider_gray">#E0E0E0</color>
+    <color name="gray">#757575</color>
+    <color name="light_gray">#F7F7F7</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="purple_primary">#9C27B0</color>
+    <color name="stripe_purple">#635BFF</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="text_primary">#1A1A1A</color>
+    <color name="text_secondary">#666666</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_primary">#FFC107</color>
+    <dimen name="card_corner_radius">8dp</dimen>
+    <dimen name="grid_spacing">8dp</dimen>
+    <dimen name="search_bar_height">56dp</dimen>
+    <string name="app_name">FootZone</string>
+    <style name="Base.Theme.MyApplication" parent="Theme.Material3.DayNight.NoActionBar">
+        
+        
+    </style>
+    <style name="LoginEditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusBottomEnd">16dp</item>
+        <item name="boxCornerRadiusBottomStart">16dp</item>
+        <item name="boxCornerRadiusTopEnd">16dp</item>
+        <item name="boxCornerRadiusTopStart">16dp</item>
+    </style>
+    <style name="Theme.MyApplication" parent="Theme.MaterialComponents.Light.NoActionBar">
+        
+        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        
+        <item name="android:statusBarColor">@android:color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+</resources>

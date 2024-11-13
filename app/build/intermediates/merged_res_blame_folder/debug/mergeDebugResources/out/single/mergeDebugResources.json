@@ -1,0 +1,266 @@
+[
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_terrain.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/terrain.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_dialog_card_input.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/dialog_card_input.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_gradient_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/gradient_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_profile.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_profile.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_soussa.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/soussa.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_intro.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_intro.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_equipe.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/equipe.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_field_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/football_field_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_reseravation.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/reseravation.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_sports.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_sports.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_camera.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_camera.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_credit_card.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_credit_card.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_border_white.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_border_white.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_product.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_product.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_admin.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_admin.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_benzart.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/benzart.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_login.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_layout_payment_item.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/layout_payment_item.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/xml_backup_rules.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/xml/backup_rules.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_user.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_user.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_statistique.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/statistique.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_main.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_chebba.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/chebba.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_logo.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_logo.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_payment.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_payment.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_item_city.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/item_city.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_button_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/button_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_circle_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/circle_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_brand_logo.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_brand_logo.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/xml_data_extraction_rules.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/xml/data_extraction_rules.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_aa.jpg.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/aa.jpg"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_logo.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/football_logo.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_payment_history.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_payment_history.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_jendouba.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/jendouba.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_football_field.jpg.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/football_field.jpg"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ss.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ss.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_user_list_item.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/user_list_item.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_stripe.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_stripe.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_border_light_blue.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_border_light_blue.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_edit_text_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/edit_text_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_default_profile.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_default_profile.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_dinar.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_dinar.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_tunis.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/tunis.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/raw_appp.mp4.flat",
+        "source": "com.example.versionfinal.app-main-33:/raw/appp.mp4"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_ic_google_pay.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/ic_google_pay.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_green_button_gradient.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/green_button_gradient.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_reclamation.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/reclamation.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_aaa.jpg.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/aaa.jpg"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_activity_signup.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/activity_signup.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/layout_dropdown_item.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/layout/dropdown_item.xml"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_gabes.png.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/gabes.png"
+    },
+    {
+        "merged": "com.example.versionfinal.app-debug-31:/drawable_rounded_dialog_background.xml.flat",
+        "source": "com.example.versionfinal.app-main-33:/drawable/rounded_dialog_background.xml"
+    }
+]
