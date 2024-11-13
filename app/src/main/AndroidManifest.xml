@@ -6,7 +6,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@drawable/ss"
-        android:label="@string/app_name"
+        android:label="FootZone"
         android:roundIcon="@drawable/ss"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication"
@@ -14,26 +14,23 @@
 
         <!-- Page Intro avec vidéo -->
         <activity
-            android:name=".User.IntroActivity"
+            android:name=".IntroActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".User.ProfileActivity"
-            android:exported="true">
-        </activity>
+
         <!-- Page Login -->
         <activity
-            android:name=".User.LoginActivity"
+            android:name=".LoginActivity"
             android:exported="true">
         </activity>
 
         <!-- Page Inscription -->
         <activity
-            android:name=".User.SignupActivity"
+            android:name=".SignupActivity"
             android:exported="true">
         </activity>
 
@@ -44,15 +41,30 @@
         </activity>
 
         <!-- Page Profil -->
-
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="true">
+        </activity>
 
         <!-- Page Admin -->
         <activity
-            android:name=".User.AdminActivity"
+            android:name=".AdminActivity"
             android:exported="true">
         </activity>
+        <activity android:name=".TeamActivity"
+                  android:exported="true">
+        </activity>
         <activity
+<<<<<<< Updated upstream
             android:name=".SportsActivity"
             android:exported="false"/>
+=======
+            android:name=".DisplayTeam"
+            android:exported="false">
+        </activity>
+>>>>>>> Stashed changes
     </application>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 </manifest>

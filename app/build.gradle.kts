@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.versionfinal"
+    namespace = "com.example.myapplication"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.versionfinal"
+        applicationId = "com.example.myapplication"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -30,19 +30,25 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
-
 dependencies {
+<<<<<<< Updated upstream
     // Material Design
     implementation("com.google.android.material:material:1.9.0")
 
     // AndroidX et autres dépendances
+=======
+>>>>>>> Stashed changes
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
-
-    // Testing
+    implementation(libs.play.services.safetynet)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation ("com.google.android.material:material:1.9.0")
+
+    implementation("com.google.android.gms:play-services-safetynet:18.0.1")
+
 }
