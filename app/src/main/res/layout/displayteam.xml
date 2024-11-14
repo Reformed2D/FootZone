@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#35B760">
+
+    <LinearLayout
+        android:id="@+id/statsContainer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="#35B65F"
+        android:orientation="horizontal"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/teamNameText"
+            android:layout_width="332dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:visibility="visible"
+            tools:text="Sample Team Name" />
+
+        <EditText
+            android:id="@+id/teamNameInput"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edit_text_background"
+            android:hint="@string/saisie_equipe_nom"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:padding="12dp"
+            android:textColor="#000000"
+            android:textColorHint="#757575"
+            android:visibility="gone" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/uploadedImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="@string/uploaded_image"
+        android:scaleType="fitCenter"
+        android:src="@drawable/pitch"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsContainer" />
+
+    <!-- Goalkeeper with delete button -->
+    <FrameLayout
+        android:id="@+id/goalkeeperContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/statsContainer">
+
+        <EditText
+            android:id="@+id/goalkeeperEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/player_edit_background"
+            android:hint="@string/gradien"
+            android:minWidth="120dp"
+            android:padding="12dp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textColorHint="#CCFFFFFF"
+            android:inputType="textPersonName"
+            android:maxLines="1"/>
+
+        <ImageButton
+            android:id="@+id/deleteGoalkeeper"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="-12dp"
+            android:layout_marginEnd="-12dp"
+            android:background="@drawable/circle_background"
+            android:src="@drawable/ic_delete"
+            android:elevation="4dp"
+            android:stateListAnimator="@null"
+            android:visibility="gone"/>
+    </FrameLayout>
+
+    <!-- Defenders -->
+    <LinearLayout
+        android:id="@+id/defendersRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/goalkeeperContainer">
+
+        <!-- Left Defender -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/defenderLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/defenseur"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteDefenderLeft"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Right Defender -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/defenderRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/defenseur"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteDefenderRight"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Midfielders -->
+    <LinearLayout
+        android:id="@+id/midfieldersRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/defendersRow">
+
+        <!-- Left Midfielder -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/midfielderLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/milieu"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteMidfielderLeft"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Right Midfielder -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/midfielderRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/milieu"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteMidfielderRight"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Forwards -->
+    <LinearLayout
+        android:id="@+id/forwardsRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/midfieldersRow">
+
+        <!-- Left Forward -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/forwardLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/attaquant"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteForwardLeft"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Right Forward -->
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp">
+
+            <EditText
+                android:id="@+id/forwardRight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/player_edit_background"
+                android:hint="@string/attaquant"
+                android:minWidth="120dp"
+                android:padding="12dp"
+                android:gravity="center"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#CCFFFFFF"
+                android:inputType="textPersonName"
+                android:maxLines="1" />
+
+            <ImageButton
+                android:id="@+id/deleteForwardRight"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="-12dp"
+                android:layout_marginEnd="-12dp"
+                android:background="@drawable/circle_background"
+                android:src="@drawable/ic_delete"
+                android:elevation="4dp"
+                android:stateListAnimator="@null"
+                android:visibility="gone"/>
+        </FrameLayout>
+    </LinearLayout>
+
+    <!-- Edit Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/editButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Edit Team"
+        android:src="@drawable/ic_edit"
+        app:backgroundTint="#6C0BA9"
+        app:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <!-- Save Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/saveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:contentDescription="Save Team"
+        android:src="@drawable/ic_save"
+        app:backgroundTint="#6B0BA8"
+        app:tint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/editButton" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/recruitPlayersButton"
+        android:layout_width="151dp"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="12dp"
+        android:text="Recruit Players"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#6C0BA9"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/uploadedImage"
+        tools:ignore="MissingConstraints" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
