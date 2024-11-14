@@ -7,7 +7,7 @@ public class Terrain {
     private String type;
     private String status;
     private String phone;
-
+    private String imageUri;
     public Terrain(String name, String localisation, String type, String status, String phone) {
         this.name = name;
         this.localisation = localisation;
@@ -63,5 +63,12 @@ public class Terrain {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 }

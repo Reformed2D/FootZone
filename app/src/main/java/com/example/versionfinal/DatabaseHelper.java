@@ -28,6 +28,7 @@ private static final String TABLE_TERRAINS = "terrains";
     private static final String COLUMN_TYPE = "type";
     private static final String COLUMN_STATUS = "status";
     private static final String COLUMN_PHONE = "phone";
+    private static final String COLUMN_IMAGE_URI = "image_uri"; // Nouvelle colonne
 
 
     /******************************************maram******************************************/
@@ -56,7 +57,8 @@ private static final String TABLE_TERRAINS = "terrains";
             + COLUMN_LOCALISATION + " TEXT,"
             + COLUMN_TYPE + " TEXT,"
             + COLUMN_STATUS + " TEXT,"
-            + COLUMN_PHONE + " TEXT"
+            + COLUMN_PHONE + " TEXT,"
+            + COLUMN_IMAGE_URI + " TEXT"
             + ")";
     private static final String CREATE_RESERVATION_TABLE =
             "CREATE TABLE " + TABLE_RESERVATIONS + " (" +
@@ -314,7 +316,8 @@ public DatabaseHelper(Context context) {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (oldVersion < 9) {  // Adjust as needed.
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVATIONS);
-            db.execSQL("DROP TABLE IF EXISTS " + TABLE_TERRAINS);
+            db.execSQL("ALTER TABLE " + TABLE_TERRAINS +
+                    " ADD COLUMN " + COLUMN_IMAGE_URI + " TEXT");
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PAYMENTS);
             db.execSQL("DROP TABLE IF EXISTS " + TEAM_TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
@@ -782,20 +785,6 @@ public DatabaseHelper(Context context) {
         db.close();
         return result > 0; // Retourne true si une réclamation a été supprimée
     }
-    public long addTerrain(Terrain terrain) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-
-        values.put(COLUMN_NAME, terrain.getName());
-        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
-        values.put(COLUMN_TYPE, terrain.getType());
-        values.put(COLUMN_STATUS, terrain.getStatus());
-        values.put(COLUMN_PHONE, terrain.getPhone());
-
-        long id = db.insert(TABLE_TERRAINS, null, values);
-        db.close();
-        return id;
-    }
 
     public Terrain getTerrain(int id) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -845,20 +834,19 @@ public DatabaseHelper(Context context) {
         return terrainList;
     }
 
-    public int updateTerrain(Terrain terrain) {
+
+    public boolean updateTerrainImage(int terrainId, String imageUri) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(COLUMN_IMAGE_URI, imageUri);
 
-        values.put(COLUMN_NAME, terrain.getName());
-        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
-        values.put(COLUMN_TYPE, terrain.getType());
-        values.put(COLUMN_STATUS, terrain.getStatus());
-        values.put(COLUMN_PHONE, terrain.getPhone());
-
-        return db.update(TABLE_TERRAINS, values,
-                COLUMN_ID + "=?",
-                new String[]{String.valueOf(terrain.getId())});
+        int rowsAffected = db.update(TABLE_TERRAINS,
+                values,
+                COLUMN_ID + " = ?",
+                new String[]{String.valueOf(terrainId)});
+        return rowsAffected > 0;
     }
+
 
     public void deleteTerrain(Terrain terrain) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -893,5 +881,47 @@ public DatabaseHelper(Context context) {
         cursor.close();
         db.close();
         return terrainList;
+    }
+    public long addTerrain(Terrain terrain) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, terrain.getName());
+        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
+        values.put(COLUMN_TYPE, terrain.getType());
+        values.put(COLUMN_STATUS, terrain.getStatus());
+        values.put(COLUMN_PHONE, terrain.getPhone());
+        values.put(COLUMN_IMAGE_URI, terrain.getImageUri());
+
+        return db.insert(TABLE_TERRAINS, null, values);
+    }
+
+    // Mettre à jour la méthode updateTerrain pour inclure l'image
+    public boolean updateTerrain(Terrain terrain) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put(COLUMN_NAME, terrain.getName());
+        values.put(COLUMN_LOCALISATION, terrain.getLocalisation());
+        values.put(COLUMN_TYPE, terrain.getType());
+        values.put(COLUMN_STATUS, terrain.getStatus());
+        values.put(COLUMN_PHONE, terrain.getPhone());
+        values.put(COLUMN_IMAGE_URI, terrain.getImageUri());
+
+        int rowsAffected = db.update(TABLE_TERRAINS,
+                values,
+                COLUMN_ID + " = ?",
+                new String[]{String.valueOf(terrain.getId())});
+        return rowsAffected > 0;
+    }
+    public int getReclamationsCount() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM reclamations", null);
+        int count = 0;
+        if (cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+        }
+        cursor.close();
+        return count;
     }
 }

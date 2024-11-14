@@ -78,14 +78,6 @@
             android:layout_marginTop="16dp"
             android:gravity="end">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Modifier"
-                android:textAllCaps="false"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:layout_marginEnd="8dp"/>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/deleteButton"

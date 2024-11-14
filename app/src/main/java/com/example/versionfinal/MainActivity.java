@@ -7,25 +7,26 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.android.material.textfield.TextInputEditText;
 
 public class MainActivity extends AppCompatActivity {
     private static final int LOCATION_PERMISSION_REQUEST = 1001;
 
     private GridView citiesGrid;
     private CityAdapter adapter;
-    private EditText searchEditText;
+    private TextInputEditText searchEditText;
     private TextView noResultsText;
-    private CardView searchBar;
+    private TextInputLayout searchLayout;
     private Button locationButton;
 
     @Override
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeViews() {
         citiesGrid = findViewById(R.id.citiesGrid);
-        searchBar = findViewById(R.id.searchBar);
+        searchLayout = findViewById(R.id.searchLayout);
         searchEditText = findViewById(R.id.searchEditText);
         locationButton = findViewById(R.id.locationButton);
         noResultsText = findViewById(R.id.noResultsText);
@@ -79,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        // Gestion du clic sur la barre de recherche
-        searchBar.setOnClickListener(v -> searchEditText.requestFocus());
+        // Gestion du clic sur la barre de recherche (optionnel car TextInputLayout gère déjà le focus)
+        searchLayout.setOnClickListener(v -> searchEditText.requestFocus());
     }
 
     private void showNoResults() {
@@ -176,5 +177,4 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
         }
     }
-
 }

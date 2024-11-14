@@ -1,6 +1,7 @@
 package com.example.versionfinal.terrain;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -8,7 +9,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,6 +29,8 @@ public class TerrainActivity extends AppCompatActivity {
     private EditText searchInput;
     private TextView noTerrainText;
     public static final int REQUEST_CODE_ADD_EDIT = 1;
+    public static final int REQUEST_CODE_IMAGE_PICK = 2;
+    private int currentTerrainId = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,13 +98,37 @@ public class TerrainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == RESULT_OK) {
-            loadTerrains();
+            switch (requestCode) {
+                case REQUEST_CODE_ADD_EDIT:
+                    loadTerrains();
+                    break;
+
+                case REQUEST_CODE_IMAGE_PICK:
+                    if (data != null && data.getData() != null) {
+                        handleImageSelection(data.getData());
+                    }
+                    break;
+            }
         }
     }
-
+    private void handleImageSelection(Uri imageUri) {
+        if (currentTerrainId != -1) {
+            // Sauvegarder l'URI de l'image dans la base de données
+            dbHelper.updateTerrainImage(currentTerrainId, imageUri.toString());
+            loadTerrains();
+            Toast.makeText(this, "Image mise à jour avec succès", Toast.LENGTH_SHORT).show();
+        }
+    }
+    public void startImagePicker(int terrainId) {
+        currentTerrainId = terrainId;
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, REQUEST_CODE_IMAGE_PICK);
+    }
     @Override
     protected void onResume() {
         super.onResume();

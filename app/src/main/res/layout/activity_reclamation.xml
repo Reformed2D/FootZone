@@ -1,115 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
-    android:gravity="center"
-    android:background="#F5F5F5">
+    android:padding="24dp"
+    android:background="@android:color/white">
 
-    <!-- Sujet -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
-
-        <EditText
-            android:id="@+id/sujetEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Sujet"
-            android:inputType="text"
-            android:textSize="18sp"
-            android:padding="12dp"
-            android:gravity="center"
-            android:background="@android:color/transparent"/>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Détails -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
-
-        <EditText
-            android:id="@+id/detailsEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Détails"
-            android:inputType="text"
-            android:textSize="18sp"
-            android:padding="12dp"
-            android:gravity="center"
-            android:background="@android:color/transparent"/>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Label Type de réclamation -->
+    <!-- Header -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Type de réclamation"
-        android:textSize="18sp"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp"
-        android:textColor="#333333"
-        android:gravity="center" />
+        android:text="RÉCLAMATION"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="24dp"/>
 
-    <!-- Type de réclamation -->
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
-
-        <Spinner
-            android:id="@+id/typeSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:textSize="18sp"
-            android:background="@android:color/transparent"/>
-    </androidx.cardview.widget.CardView>
-
-    <!-- Description -->
-    <androidx.cardview.widget.CardView
+    <!-- Sujet -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sujetLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:cardBackgroundColor="#FFFFFF">
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/descriptionEditText"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/sujetEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Description"
+            android:hint="Sujet de la réclamation"
             android:inputType="text"
-            android:textSize="18sp"
-            android:padding="12dp"
-            android:gravity="center"
-            android:background="@android:color/transparent"/>
-    </androidx.cardview.widget.CardView>
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- Bouton pour soumettre la réclamation -->
-    <Button
-        android:id="@+id/submitReclamationButton"
+    <!-- Type de réclamation -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/typeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+        <AutoCompleteTextView
+            android:id="@+id/typeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:hint="Type de réclamation"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Détails -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/detailsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/detailsEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Détails courts"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Description -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/descriptionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginBottom="24dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/descriptionEditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="Description détaillée"
+            android:inputType="textMultiLine"
+            android:gravity="top"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/cancelButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Annuler"
+            android:textAllCaps="false"
+            android:layout_marginEnd="8dp"
+            app:cornerRadius="16dp"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submitReclamationButton"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:text="Soumettre"
+            android:textAllCaps="false"
+            android:layout_marginStart="8dp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#FFC107"/>
+    </LinearLayout>
+
+    <!-- Progress Indicator -->
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progressIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Soumettre la réclamation"
-        android:textSize="18sp"
         android:layout_gravity="center"
-        android:backgroundTint="#4CAF50"
-        android:textColor="@android:color/white"
-        android:paddingHorizontal="24dp"
-        android:paddingVertical="8dp"/>
+        android:visibility="gone"
+        android:layout_marginTop="16dp"
+        app:indicatorColor="#FFC107"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/viewReclamationsButton"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:text="Voir toutes les réclamations"
+        android:textAllCaps="false"
+        app:cornerRadius="16dp"
+        android:layout_marginBottom="16dp"
+        app:icon="@android:drawable/ic_menu_view"
+        app:iconGravity="textStart"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
 </LinearLayout>

@@ -4,85 +4,77 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#9C27B0">
+    android:background="@android:color/white">
 
     <!-- Search Section -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="24dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="OÙ"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="48dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="CHERCHER?"
-            android:textColor="#8E24AA"
-            android:textSize="24sp"
+            android:textColor="#FFC107"
+            android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Choisis ta ville"
-            android:textColor="@android:color/white"
+            android:text="Choisis ton stade"
+            android:textColor="#666666"
+            android:textSize="16sp"
             android:layout_marginTop="8dp" />
 
         <!-- Search Bar -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/searchBar"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="25dp"
-            app:cardBackgroundColor="#8E24AA">
+            android:layout_marginTop="32dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp"
+            app:startIconDrawable="@android:drawable/ic_menu_search"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="12dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@android:drawable/ic_menu_search"
-                    android:tint="@android:color/white" />
-
-                <EditText
-                    android:id="@+id/searchEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:background="@null"
-                    android:hint="Ma ville"
-                    android:textColorHint="#CCFFFFFF"
-                    android:textColor="@android:color/white"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+                android:hint="Stadium"
+                android:inputType="text"
+                android:maxLines="1"
+                android:padding="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Location Button -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/locationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:text="Autour de moi"
-            android:drawableStart="@android:drawable/ic_menu_mylocation"
-            android:padding="12dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/white"
-            android:textColor="#8E24AA" />
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            app:cornerRadius="16dp"
+            android:backgroundTint="#FFC107"
+            android:textColor="@android:color/white"
+            app:icon="@android:drawable/ic_menu_mylocation"
+            app:iconGravity="start"
+            android:layout_marginTop="16dp"/>
     </LinearLayout>
 
     <!-- Cities Grid Section -->
@@ -99,7 +91,8 @@
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:padding="16dp" />
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp" />
 
         <!-- Message "Aucun résultat" -->
         <TextView
@@ -112,7 +105,7 @@
             android:padding="16dp"
             android:visibility="gone"
             android:layout_margin="16dp"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="#666666"/>
 
         <GridView
             android:id="@+id/citiesGrid"
@@ -121,7 +114,7 @@
             android:numColumns="2"
             android:verticalSpacing="8dp"
             android:horizontalSpacing="8dp"
-            android:padding="8dp" />
+            android:padding="16dp" />
     </LinearLayout>
 
 </LinearLayout>

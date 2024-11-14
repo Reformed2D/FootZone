@@ -2,15 +2,21 @@ package com.example.versionfinal.payment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.versionfinal.R;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class PaymentActivity extends AppCompatActivity {
 
@@ -65,11 +71,74 @@ public class PaymentActivity extends AppCompatActivity {
         confirmPaymentButton.setEnabled(false);
 
         new android.os.Handler().postDelayed(() -> {
-            Toast.makeText(PaymentActivity.this,
-                    "Paiement réussi!", Toast.LENGTH_LONG).show();
+            showReceiptDialog();
+        }, 2000);
+    }
+
+    private void showReceiptDialog() {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.receipt_dialog);
+        dialog.setCancelable(false);
+
+        // Générer un numéro de transaction unique
+        String transactionId = String.format("TRX-%d", System.currentTimeMillis());
+
+        // Récupérer les informations de paiement
+        String cardNumber = cardNumberEdit.getText().toString();
+        String maskedCard = "**** **** **** " + cardNumber.substring(cardNumber.length() - 4);
+        String cardHolder = cardHolderEdit.getText().toString();
+
+        // Formater la date
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault());
+        String currentDate = sdf.format(new Date());
+
+        // Configurer les vues du reçu
+        TextView receiptNumber = dialog.findViewById(R.id.receiptNumber);
+        TextView receiptDate = dialog.findViewById(R.id.receiptDate);
+        TextView receiptAmount = dialog.findViewById(R.id.receiptAmount);
+        TextView receiptCardHolder = dialog.findViewById(R.id.receiptCardHolder);
+        TextView receiptCardNumber = dialog.findViewById(R.id.receiptCardNumber);
+        ImageView qrCodeImage = dialog.findViewById(R.id.qrCodeImage);
+        Button btnClose = dialog.findViewById(R.id.btnClose);
+
+        // Définir les textes
+        String receiptNumberText = "N° Transaction: " + transactionId;
+        String receiptDateText = "Date: " + currentDate;
+        String receiptAmountText = String.format("Montant: %.2f €", amount);
+        String receiptCardHolderText = "Titulaire: " + cardHolder;
+        String receiptCardNumberText = "Carte: " + maskedCard;
+
+        receiptNumber.setText(receiptNumberText);
+        receiptDate.setText(receiptDateText);
+        receiptAmount.setText(receiptAmountText);
+        receiptCardHolder.setText(receiptCardHolderText);
+        receiptCardNumber.setText(receiptCardNumberText);
+
+        // Générer le contenu du QR code
+        String qrCodeContent = String.format(
+                "Transaction: %s\nDate: %s\nMontant: %.2f €\nTitulaire: %s\nCarte: %s",
+                transactionId,
+                currentDate,
+                amount,
+                cardHolder,
+                maskedCard
+        );
+
+        // Générer et afficher le QR code
+        Bitmap qrCodeBitmap = QRCodeGenerator.generateQRCode(qrCodeContent, 500, 500);
+        if (qrCodeBitmap != null) {
+            qrCodeImage.setImageBitmap(qrCodeBitmap);
+        }
+
+        // Configurer le bouton de fermeture
+        btnClose.setOnClickListener(v -> {
+            dialog.dismiss();
             setResult(RESULT_OK);
             finish();
-        }, 2000);
+        });
+
+        // Afficher le dialog
+        dialog.show();
     }
 
     private boolean validateInputs() {

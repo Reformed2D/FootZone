@@ -11,6 +11,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.versionfinal.User.LoginActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,12 +31,12 @@ public class CityAdapter extends BaseAdapter implements Filterable {
     }
 
     private void initCities() {
-        originalCities.add(new City("Jendouba", R.drawable.jendouba));
-        originalCities.add(new City("Tunis", R.drawable.tunis));
-        originalCities.add(new City("Bizerte", R.drawable.benzart));
-        originalCities.add(new City("Chebba", R.drawable.chebba));
-        originalCities.add(new City("Gabes", R.drawable.gabes));
-        originalCities.add(new City("Sousse", R.drawable.soussa));
+        originalCities.add(new City("macarena", R.drawable.macarena));
+        originalCities.add(new City("maracana", R.drawable.maracana));
+        originalCities.add(new City("arena", R.drawable.arena));
+        originalCities.add(new City("footchamp", R.drawable.footchamp));
+        originalCities.add(new City("beta", R.drawable.beta));
+        originalCities.add(new City("olympiesky", R.drawable.olympiesky));
     }
 
     @Override
@@ -72,7 +74,7 @@ public class CityAdapter extends BaseAdapter implements Filterable {
 
         // Ajouter le clic sur l'élément
         convertView.setOnClickListener(v -> {
-            Intent intent = new Intent(context, SportsActivity.class);
+            Intent intent = new Intent(context, LoginActivity.class);
             intent.putExtra("cityName", city.getName());
             context.startActivity(intent);
         });

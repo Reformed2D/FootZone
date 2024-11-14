@@ -1,84 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="24dp"
+    android:background="@android:color/white">
 
+    <!-- Header -->
     <TextView
-        android:id="@+id/amountTextView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
+        android:text="PAIEMENT"
+        android:textSize="28sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="24dp"/>
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="16dp"/>
 
-    <RadioGroup
-        android:id="@+id/paymentMethodGroup"
+    <!-- Amount Display -->
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="#FFC107">
 
-        <RadioButton
-            android:id="@+id/creditCardRadio"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Carte de crédit"
-            android:checked="true"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <RadioButton
-            android:id="@+id/debitCardRadio"
-            android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Montant à payer"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/amountTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="8dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Payment Method Selection -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="4dp">
+
+        <RadioGroup
+            android:id="@+id/paymentMethodGroup"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Carte de débit"/>
-    </RadioGroup>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-    <EditText
-        android:id="@+id/cardHolderEdit"
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/creditCardRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carte de crédit"
+                android:textSize="16sp"
+                android:checked="true"
+                android:padding="8dp"/>
+
+            <com.google.android.material.radiobutton.MaterialRadioButton
+                android:id="@+id/debitCardRadio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Carte de débit"
+                android:textSize="16sp"
+                android:padding="8dp"/>
+        </RadioGroup>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Card Details -->
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nom du titulaire"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-    <EditText
-        android:id="@+id/cardNumberEdit"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardHolderEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nom du titulaire"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Numéro de carte"
-        android:inputType="number"
-        android:maxLength="16"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="16dp"
+        app:boxCornerRadiusTopStart="16dp"
+        app:boxCornerRadiusTopEnd="16dp"
+        app:boxCornerRadiusBottomStart="16dp"
+        app:boxCornerRadiusBottomEnd="16dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/cardNumberEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numéro de carte"
+            android:inputType="number"
+            android:maxLength="16"
+            android:padding="16dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="24dp">
 
-        <EditText
-            android:id="@+id/expiryDateEdit"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Date exp. (MM/YY)"
-            android:layout_marginEnd="8dp"/>
+            android:layout_marginEnd="8dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
-        <EditText
-            android:id="@+id/cvvEdit"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/expiryDateEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date exp. (MM/YY)"
+                android:padding="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="CVV"
-            android:inputType="number"
-            android:maxLength="3"/>
+            android:layout_marginStart="8dp"
+            app:boxCornerRadiusTopStart="16dp"
+            app:boxCornerRadiusTopEnd="16dp"
+            app:boxCornerRadiusBottomStart="16dp"
+            app:boxCornerRadiusBottomEnd="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cvvEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="CVV"
+                android:inputType="numberPassword"
+                android:maxLength="3"
+                android:padding="16dp"/>
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-    <Button
+    <!-- Confirm Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/confirmPaymentButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Confirmer le paiement"/>
+        android:layout_height="60dp"
+        android:text="Confirmer le paiement"
+        android:textAllCaps="false"
+        app:cornerRadius="16dp"
+        android:backgroundTint="#4CAF50"/>
 
 </LinearLayout>

@@ -16,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.versionfinal.DatabaseHelper;
 import com.example.versionfinal.R;
+import com.example.versionfinal.reservation.ReservationActivity;
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
@@ -41,27 +43,86 @@ public class TerrainAdapter extends RecyclerView.Adapter<TerrainAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Terrain terrain = terrainList.get(position);
+
+        // Configuration des textes
         holder.nameTextView.setText(terrain.getName());
         holder.addressTextView.setText(terrain.getLocalisation());
         holder.phoneTextView.setText(terrain.getPhone());
         holder.typeTextView.setText(terrain.getType());
         holder.statusTextView.setText(terrain.getStatus());
 
-        holder.addressTextView.setOnClickListener(v -> {
-            String locationUrl = "https://www.google.com/maps/search/?api=1&query=" + Uri.encode(terrain.getLocalisation());
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(locationUrl));
-            context.startActivity(browserIntent);
+        // Charger l'image si elle existe
+        if (terrain.getImageUri() != null && !terrain.getImageUri().isEmpty()) {
+            holder.terrainImageView.setImageURI(Uri.parse(terrain.getImageUri()));
+        } else {
+            holder.terrainImageView.setImageResource(R.drawable.arena);
+        }
+
+        // Click listeners
+        setupClickListeners(holder, terrain);
+    }
+
+    private void setupClickListeners(@NonNull ViewHolder holder, Terrain terrain) {
+        // Image upload
+        holder.terrainImageView.setOnClickListener(v -> {
+            if (context instanceof TerrainActivity) {
+                ((TerrainActivity) context).startImagePicker(terrain.getId());
+            }
         });
 
-        holder.statusTextView.setOnClickListener(v -> showStatusDialog(holder.statusTextView, terrain));
+        // Appel téléphonique
+        holder.phoneTextView.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_DIAL);
+            intent.setData(Uri.parse("tel:" + terrain.getPhone()));
+            context.startActivity(intent);
+        });
 
+        // Navigation
+        holder.addressTextView.setOnClickListener(v -> {
+            String locationUrl = "https://www.google.com/maps/search/?api=1&query=" +
+                    Uri.encode(terrain.getLocalisation());
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(locationUrl));
+            context.startActivity(intent);
+        });
+
+        // À propos
+        holder.aboutButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, AddEditTerrainActivity.class);
+            intent.putExtra("terrain_id", terrain.getId());
+            context.startActivity(intent);
+        });
+
+        // Réservation
+        holder.reservationButton.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ReservationActivity.class);
+            intent.putExtra("terrain_id", terrain.getId());
+            context.startActivity(intent);
+        });
+
+        // Édition
         holder.iconEdit.setOnClickListener(v -> {
             Intent intent = new Intent(context, AddEditTerrainActivity.class);
-            intent.putExtra("terrainId", terrain.getId());
-            ((TerrainActivity) context).startActivityForResult(intent, TerrainActivity.REQUEST_CODE_ADD_EDIT);
+            intent.putExtra("terrain_id", terrain.getId());
+            ((TerrainActivity) context).startActivityForResult(
+                    intent, TerrainActivity.REQUEST_CODE_ADD_EDIT);
         });
 
-        holder.iconDelete.setOnClickListener(v -> deleteTerrain(terrain));
+        // Suppression
+        holder.iconDelete.setOnClickListener(v -> showDeleteDialog(terrain));
+    }
+
+    private void showDeleteDialog(Terrain terrain) {
+        new AlertDialog.Builder(context)
+                .setTitle("Supprimer le terrain")
+                .setMessage("Êtes-vous sûr de vouloir supprimer ce terrain ?")
+                .setPositiveButton("Oui", (dialog, which) -> {
+                    dbHelper.deleteTerrain(terrain);
+                    terrainList.remove(terrain);
+                    notifyDataSetChanged();
+                    Toast.makeText(context, "Terrain supprimé", Toast.LENGTH_SHORT).show();
+                })
+                .setNegativeButton("Non", null)
+                .show();
     }
 
     @Override
@@ -69,38 +130,10 @@ public class TerrainAdapter extends RecyclerView.Adapter<TerrainAdapter.ViewHold
         return terrainList.size();
     }
 
-    private void showStatusDialog(TextView statusTextView, Terrain terrain) {
-        final String[] statusOptions = {"Disponible", "Non Disponible"};
-        new AlertDialog.Builder(context)
-                .setTitle("Select Status")
-                .setItems(statusOptions, (dialog, which) -> {
-                    String selectedStatus = statusOptions[which];
-                    statusTextView.setText(selectedStatus);
-                    terrain.setStatus(selectedStatus);
-                    dbHelper.updateTerrain(terrain);
-                })
-                .create()
-                .show();
-    }
-
-    private void deleteTerrain(Terrain terrain) {
-        new AlertDialog.Builder(context)
-                .setTitle("Delete Terrain")
-                .setMessage("Are you sure you want to delete this terrain?")
-                .setPositiveButton(android.R.string.yes, (dialog, which) -> {
-                    dbHelper.deleteTerrain(terrain);
-                    terrainList.remove(terrain);
-                    notifyDataSetChanged();
-                    Toast.makeText(context, "Terrain deleted", Toast.LENGTH_SHORT).show();
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-    }
-
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView nameTextView, addressTextView, phoneTextView, typeTextView, statusTextView;
-        ImageView restaurantImageView, iconEdit, iconDelete;
+        ImageView terrainImageView, iconEdit, iconDelete;
+        MaterialButton aboutButton, reservationButton;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -109,8 +142,11 @@ public class TerrainAdapter extends RecyclerView.Adapter<TerrainAdapter.ViewHold
             phoneTextView = itemView.findViewById(R.id.phone_text);
             typeTextView = itemView.findViewById(R.id.type_text);
             statusTextView = itemView.findViewById(R.id.status_text);
+            terrainImageView = itemView.findViewById(R.id.terrain_image);
             iconEdit = itemView.findViewById(R.id.icon_edit);
             iconDelete = itemView.findViewById(R.id.icon_delete);
+            aboutButton = itemView.findViewById(R.id.about_button);
+            reservationButton = itemView.findViewById(R.id.reservation_button);
         }
     }
 }

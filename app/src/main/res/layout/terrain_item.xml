@@ -13,6 +13,28 @@
         android:orientation="vertical"
         android:padding="16dp">
 
+        <!-- Image du terrain -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:id="@+id/terrain_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:background="#EEEEEE"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Cliquez pour ajouter une image"
+                android:textColor="#666666"/>
+        </FrameLayout>
+
         <TextView
             android:id="@+id/name_text"
             android:layout_width="match_parent"
@@ -51,8 +73,35 @@
             android:layout_height="wrap_content"
             android:background="@drawable/status_background"
             android:padding="4dp"
-            android:layout_marginBottom="8dp"/>
+            android:layout_marginBottom="16dp"/>
 
+        <!-- Boutons About et Réservation -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/about_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="À propos"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/reservation_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Réserver"
+                android:layout_marginStart="8dp"
+                app:backgroundTint="#FFC107"/>
+        </LinearLayout>
+
+        <!-- Icônes d'édition et de suppression -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

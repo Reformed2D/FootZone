@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.versionfinal.DatabaseHelper;
 import com.example.versionfinal.R;
+import com.example.versionfinal.SportsActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -96,8 +97,14 @@ public class LoginActivity extends AppCompatActivity {
         signupButton.setOnClickListener(v -> navigateToSignup());
         googleSignInButton.setOnClickListener(v -> startGoogleSignIn());
         refreshCaptcha.setOnClickListener(v -> generateNewCaptcha());
+        TextView loginWithoutButton = findViewById(R.id.loginWithoutButton);
+        loginWithoutButton.setOnClickListener(v -> navigateToSportActivity());
     }
-
+    private void navigateToSportActivity() {
+        Intent intent = new Intent(this, SportsActivity.class);
+        startActivity(intent);
+        finish();
+    }
     private void generateNewCaptcha() {
         currentCaptcha = generateRandomCaptcha();
         applyTextEffects(currentCaptcha);
