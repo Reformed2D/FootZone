@@ -110,7 +110,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=LocalEmulator, isTemplate=false, identifier=path=C:\Users\admin\.android\avd\Pixel_7_API_25.avd)]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[DeviceId(pluginId=PhysicalDevice, isTemplate=false, identifier=serial=83ef1625)]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -157,10 +157,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="resourceFile" />
         <option value="valueResourceFile" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
       </list>
     </option>
   </component>
@@ -199,6 +199,7 @@
       <recent name="C:\Users\omar\AndroidStudioProjects\MyApplication\app\src\main\java\com\example\myapplication" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\MyApplication\app\src\main\res\drawable" />
       <recent name="F:\android\MyApplication\app\src\main\res\drawable" />
       <recent name="C:\Users\omar\AndroidStudioProjects\MyApplication\app\src\main\res\raw" />
       <recent name="C:\Users\omar\AndroidStudioProjects\MyApplication\app\src\main\res\drawable" />
