@@ -10,6 +10,8 @@ import com.example.versionfinal.equipe.TeamActivity;
 import com.example.versionfinal.reclamation.ReclamationActivity;
 import com.example.versionfinal.reservation.ReservationActivity;
 import com.example.versionfinal.terrain.TerrainActivity;
+import com.example.versionfinal.terrain.TerrainScheduleActivity;
+import com.example.versionfinal.terrain.TerrainScheduleItem;
 
 public class SportsActivity extends AppCompatActivity {
 
@@ -47,7 +49,7 @@ public class SportsActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case 1: // Reservation
-                startActivity(new Intent(this, TerrainActivity.class));
+                startActivity(new Intent(this, TerrainScheduleActivity.class));
                 break;
             case 2: // Reservation
                 startActivity(new Intent(this, ReservationActivity.class));

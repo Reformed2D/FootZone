@@ -1,7 +1,10 @@
 package com.example.versionfinal;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -16,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -28,11 +33,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView noResultsText;
     private TextInputLayout searchLayout;
     private Button locationButton;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Initialisation du client de localisation
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
         // Initialisation des vues
         initializeViews();
@@ -80,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {}
         });
 
-        // Gestion du clic sur la barre de recherche (optionnel car TextInputLayout gère déjà le focus)
+        // Gestion du clic sur la barre de recherche
         searchLayout.setOnClickListener(v -> searchEditText.requestFocus());
     }
 
@@ -115,19 +124,29 @@ public class MainActivity extends AppCompatActivity {
                 "Ville sélectionnée : " + city.getName(),
                 Toast.LENGTH_SHORT).show();
 
-        // Ici vous pouvez ajouter la logique pour ouvrir une nouvelle activité
-        // ou afficher plus d'informations sur la ville sélectionnée
+        // Ouvrir Google Maps avec la recherche pour cette ville
+        String cityQuery = "soccer+field+in+" + city.getName();
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + cityQuery);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        } else {
+            // Fallback vers navigateur si Google Maps n'est pas installé
+            String mapsUrl = "https://www.google.com/maps/search/" + cityQuery;
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapsUrl));
+            startActivity(browserIntent);
+        }
     }
 
     private void checkLocationPermission() {
         if (ContextCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // Demander la permission si elle n'est pas accordée
             ActivityCompat.requestPermissions(this,
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_PERMISSION_REQUEST);
         } else {
-            // Permission déjà accordée, obtenir la localisation
             getLocation();
         }
     }
@@ -139,10 +158,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == LOCATION_PERMISSION_REQUEST) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission accordée
                 getLocation();
             } else {
-                // Permission refusée
                 Toast.makeText(this,
                         "La permission de localisation est nécessaire pour cette fonctionnalité",
                         Toast.LENGTH_LONG).show();
@@ -151,17 +168,57 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void getLocation() {
-        // Implémenter la logique de géolocalisation
-        Toast.makeText(this, "Recherche de votre position...", Toast.LENGTH_SHORT).show();
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
 
-        // Ici, vous pouvez ajouter le code pour obtenir la position réelle
-        // en utilisant LocationManager ou FusedLocationProviderClient
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, location -> {
+                    if (location != null) {
+                        openMapsWithLocation(location);
+                    } else {
+                        // Si la localisation n'est pas disponible, ouvrir Maps sans coordonnées
+                        openMapsWithoutLocation();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    // En cas d'erreur, ouvrir Maps sans coordonnées
+                    openMapsWithoutLocation();
+                });
+    }
+
+    private void openMapsWithLocation(Location location) {
+        // Rechercher les terrains de foot autour de la position actuelle
+        Uri gmmIntentUri = Uri.parse("geo:" + location.getLatitude() + "," +
+                location.getLongitude() +
+                "?q=soccer+field");
+        launchMapsIntent(gmmIntentUri);
+    }
+
+    private void openMapsWithoutLocation() {
+        // Rechercher les terrains de foot sans position spécifique
+        Uri gmmIntentUri = Uri.parse("geo:0,0?q=soccer+field");
+        launchMapsIntent(gmmIntentUri);
+    }
+
+    private void launchMapsIntent(Uri gmmIntentUri) {
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+
+        if (mapIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(mapIntent);
+        } else {
+            // Fallback vers navigateur si Google Maps n'est pas installé
+            String mapsUrl = "https://www.google.com/maps/search/soccer+field";
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mapsUrl));
+            startActivity(browserIntent);
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // Rafraîchir la liste des villes si nécessaire
         if (adapter != null) {
             adapter.notifyDataSetChanged();
         }
@@ -169,11 +226,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        // Si la recherche est active et contient du texte, effacer la recherche
         if (searchEditText != null && searchEditText.length() > 0) {
             searchEditText.setText("");
         } else {
-            // Sinon, comportement normal du bouton retour
             super.onBackPressed();
         }
     }

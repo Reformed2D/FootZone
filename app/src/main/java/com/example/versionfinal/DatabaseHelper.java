@@ -927,7 +927,7 @@ public DatabaseHelper(Context context) {
     /********************************************************/
     public Cursor getPlayersWithoutTeam() {
         SQLiteDatabase db = this.getReadableDatabase();
-        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_9 + " = 0", null);
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_9 + " = 1", null);
     }
     private static final int MAX_GOALKEEPERS = 1;
     private static final int MAX_DEFENDERS = 2;

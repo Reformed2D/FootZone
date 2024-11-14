@@ -48,7 +48,7 @@ dependencies {
     implementation ("com.sun.mail:android-activation:1.6.7")
     implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation ("com.google.zxing:core:3.4.1")
-
+    implementation ("com.google.android.gms:play-services-location:21.0.1")
     // AndroidX et autres dépendances
     implementation(libs.appcompat)
     implementation(libs.material)

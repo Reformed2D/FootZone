@@ -2,7 +2,6 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#F5F5F5">
@@ -18,11 +17,9 @@
             android:background="@color/white"
             app:title="Recruit Players"
             app:titleTextColor="@color/black"/>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -50,7 +47,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:layout_gravity="center_vertical"
-                        android:src="@drawable/ic_searchbar"
+                        android:src="@drawable/ic_search"
                         app:tint="#757575" />
 
                     <EditText
@@ -117,6 +114,40 @@
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
+            <!-- Empty State -->
+            <LinearLayout
+                android:id="@+id/emptyStateLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="32dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_empty_state"
+                    android:alpha="0.5"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="No players found"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#666666"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Try adjusting your search or filters"
+                    android:textColor="#999999"
+                    android:textAlignment="center"/>
+            </LinearLayout>
+
             <!-- Players RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/playersRecyclerView"
@@ -126,30 +157,6 @@
                 android:clipToPadding="false"
                 android:paddingBottom="16dp" />
 
-
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/fabrizio" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="🚨 𝐇𝐄𝐑𝐄 𝐖𝐄 𝐆𝐎!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        app:layout_anchor="@+id/nestedScrollView"
-        app:layout_anchorGravity="center" />
-
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
