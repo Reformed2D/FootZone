@@ -365,5 +365,19 @@
         app:tint="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/editButton" />
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/recruitPlayersButton"
+        android:layout_width="151dp"
+        android:layout_height="55dp"
+        android:layout_marginHorizontal="8dp"
+        android:padding="12dp"
+        android:text="Recruit Players"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="#6C0BA9"
+        app:cornerRadius="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/uploadedImage"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

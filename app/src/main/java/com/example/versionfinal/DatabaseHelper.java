@@ -19,7 +19,7 @@ import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "footballApp.db";
-    private static final int DATABASE_VERSION = 10;
+    private static final int DATABASE_VERSION = 11;
 /*****************************************************************/
 private static final String TABLE_TERRAINS = "terrains";
 
@@ -181,13 +181,13 @@ private static final String TABLE_TERRAINS = "terrains";
 /*****************************************************************/
     // Table Utilisateurs
     private static final String TABLE_NAME = "users";
-    private static final String COL_1 = "ID";
-    private static final String COL_2 = "USERNAME";
+    public static final String COL_1 = "ID";
+    public static final String COL_2 = "USERNAME";
     private static final String COL_3 = "EMAIL";
     private static final String COL_4 = "PASSWORD";
     private static final String COL_5 = "ROLE";
     private static final String COL_6 = "BIRTHDATE";
-    private static final String COL_7 = "POSITION";
+    public static final String COL_7 = "POSITION";
     private static final String COL_8 = "WITH_TEAM";
     private static final String COL_9 = "WITHOUT_TEAM";
     private static final String COL_10 = "PROFILE_IMAGE";
@@ -923,5 +923,87 @@ public DatabaseHelper(Context context) {
         }
         cursor.close();
         return count;
+    }
+    /********************************************************/
+    public Cursor getPlayersWithoutTeam() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + COL_9 + " = 0", null);
+    }
+    private static final int MAX_GOALKEEPERS = 1;
+    private static final int MAX_DEFENDERS = 2;
+    private static final int MAX_MIDFIELDERS = 2;
+    private static final int MAX_FORWARDS = 2;
+
+    public boolean canAssignPosition(String position) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        int count = 0;
+        switch (position) {
+            case "GOALKEEPER":
+                count = getPositionCount(TEAM_COL_3);
+                return count < 1;  // Only 1 goalkeeper allowed
+            case "DEFENDER":
+                count = getPositionCount(TEAM_COL_4) + getPositionCount(TEAM_COL_5);
+                return count < 2;  // Maximum 2 defenders allowed
+            case "MIDFIELDER":
+                count = getPositionCount(TEAM_COL_6) + getPositionCount(TEAM_COL_7);
+                return count < 2;  // Maximum 2 midfielders allowed
+            case "ATTACKER":
+                count = getPositionCount(TEAM_COL_8) + getPositionCount(TEAM_COL_9);
+                return count < 2;  // Maximum 2 attackers allowed
+            default:
+                return false;
+        }
+    }
+
+    // Helper method to get the count of players in a specific position column
+    private int getPositionCount(String positionColumn) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + TEAM_TABLE_NAME + " WHERE " + positionColumn + " IS NOT NULL", null);
+        int count = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        return count;
+    }
+
+    // Modified insertTeam method to check positions before assigning
+    public int insertTeamWithPositionCheck(String teamName, String goalkeeper, String defenderLeft, String defenderRight,
+                                           String midfielderLeft, String midfielderRight, String forwardLeft, String forwardRight, int userId) {
+        // Check if each position can be assigned
+        if (!canAssignPosition("GOALKEEPER") && goalkeeper != null) {
+            Log.d("DatabaseHelper", "Cannot assign goalkeeper, limit reached.");
+            return -1;
+        }
+        if (!canAssignPosition("DEFENDER") && (defenderLeft != null || defenderRight != null)) {
+            Log.d("DatabaseHelper", "Cannot assign defender, limit reached.");
+            return -1;
+        }
+        if (!canAssignPosition("MIDFIELDER") && (midfielderLeft != null || midfielderRight != null)) {
+            Log.d("DatabaseHelper", "Cannot assign midfielder, limit reached.");
+            return -1;
+        }
+        if (!canAssignPosition("ATTACKER") && (forwardLeft != null || forwardRight != null)) {
+            Log.d("DatabaseHelper", "Cannot assign attacker, limit reached.");
+            return -1;
+        }
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(TEAM_COL_2, teamName);
+        contentValues.put(TEAM_COL_3, goalkeeper);
+        contentValues.put(TEAM_COL_4, defenderLeft);
+        contentValues.put(TEAM_COL_5, defenderRight);
+        contentValues.put(TEAM_COL_6, midfielderLeft);
+        contentValues.put(TEAM_COL_7, midfielderRight);
+        contentValues.put(TEAM_COL_8, forwardLeft);
+        contentValues.put(TEAM_COL_9, forwardRight);
+        contentValues.put(TEAM_COL_10, userId);
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        long result = db.insert(TEAM_TABLE_NAME, null, contentValues);
+        db.close();
+
+        // Return result or other specific code if needed
+        return (int) result;
     }
 }

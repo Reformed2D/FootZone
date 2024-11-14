@@ -71,5 +71,9 @@
             android:name=".terrain.AddEditTerrainActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".equipe.RecruitPlayersActivity"
+            android:exported="false" />
+
     </application>
 </manifest>

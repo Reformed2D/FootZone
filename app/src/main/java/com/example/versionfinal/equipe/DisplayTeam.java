@@ -1,4 +1,5 @@
 package com.example.versionfinal.equipe;
+import android.content.Intent;
 import android.database.sqlite.SQLiteException;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.versionfinal.DatabaseHelper;
 import com.example.versionfinal.R;
+import com.example.versionfinal.equipe.Team;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class DisplayTeam extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class DisplayTeam extends AppCompatActivity {
     private EditText goalkeeperEdit, defenderLeft, defenderRight, midfielderLeft, midfielderRight, forwardLeft, forwardRight;
     private FloatingActionButton editButton;
     private FloatingActionButton saveButton;
+    private MaterialButton recruitPlayersButton;
 
     private long teamId;
     private int userId;
@@ -60,6 +64,8 @@ public class DisplayTeam extends AppCompatActivity {
         saveButton.setOnClickListener(v -> toggleEditMode(false));
         initializeDeleteButtons();
         setupDeleteListeners();
+        setupRecruitButton();
+
     }
 
     private void initializeViews() {
@@ -74,6 +80,8 @@ public class DisplayTeam extends AppCompatActivity {
         forwardRight = findViewById(R.id.forwardRight);
         editButton = findViewById(R.id.editButton);
         saveButton = findViewById(R.id.saveButton);
+        recruitPlayersButton = findViewById(R.id.recruitPlayersButton);
+
     }
 
     private void setFieldsEditable(boolean editable) {
@@ -238,6 +246,14 @@ public class DisplayTeam extends AppCompatActivity {
                 })
                 .create()
                 .show();
+    }
+    private void setupRecruitButton() {
+        recruitPlayersButton.setOnClickListener(v -> {
+            Intent intent = new Intent(DisplayTeam.this, RecruitPlayersActivity.class);
+            intent.putExtra("TEAM_ID", teamId);
+            intent.putExtra("USER_ID", userId);
+            startActivity(intent);
+        });
     }
 
 
